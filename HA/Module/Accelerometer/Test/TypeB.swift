@@ -121,11 +121,11 @@ class TypeB_CoreMotionCenter {
     private let manager = CMMotionManager()
     
     
-    // MARK: - ObservableValue
+    // MARK: - ObservableProperties
     private var acceleration: Observable<Acceleration> = Observable(Acceleration(x: 0, y: 0, z: 0))
     
     
-    // MARK: - Setting Value
+    // MARK: - SettingProperteis
     private var accelerometerSettingValue = CoreMotionSettingValue(sensor: .accelerometer)
     
     private var gyroSettingValue = CoreMotionSettingValue(sensor: .gyro)
