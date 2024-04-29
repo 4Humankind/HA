@@ -16,6 +16,10 @@
 		BD8D781D2BDF36A000909914 /* HAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D781C2BDF36A000909914 /* HAUITests.swift */; };
 		BD8D781F2BDF36A000909914 /* HAUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D781E2BDF36A000909914 /* HAUITestsLaunchTests.swift */; };
 		BD8D782D2BDF389D00909914 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D782C2BDF389D00909914 /* SnapKit */; };
+		BD8D78362BDF3E6B00909914 /* TypeA.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D78352BDF3E6B00909914 /* TypeA.swift */; };
+		BD8D78372BDF3E6B00909914 /* TypeA.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D78352BDF3E6B00909914 /* TypeA.swift */; };
+		BD8D78392BDF3ED800909914 /* TypeB.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D78382BDF3ED800909914 /* TypeB.swift */; };
+		BD8D783A2BDF3ED800909914 /* TypeB.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D78382BDF3ED800909914 /* TypeB.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,8 @@
 		BD8D78182BDF36A000909914 /* HAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD8D781C2BDF36A000909914 /* HAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAUITests.swift; sourceTree = "<group>"; };
 		BD8D781E2BDF36A000909914 /* HAUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BD8D78352BDF3E6B00909914 /* TypeA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeA.swift; sourceTree = "<group>"; };
+		BD8D78382BDF3ED800909914 /* TypeB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,7 @@
 				BD8D77FB2BDF369F00909914 /* AppDelegate.swift */,
 				BD8D77FD2BDF369F00909914 /* SceneDelegate.swift */,
 				BD8D77FF2BDF369F00909914 /* ViewController.swift */,
+				BD8D782E2BDF3D9400909914 /* Module */,
 				BD8D78042BDF36A000909914 /* Assets.xcassets */,
 				BD8D78062BDF36A000909914 /* LaunchScreen.storyboard */,
 				BD8D78092BDF36A000909914 /* Info.plist */,
@@ -124,6 +131,31 @@
 				BD8D781E2BDF36A000909914 /* HAUITestsLaunchTests.swift */,
 			);
 			path = HAUITests;
+			sourceTree = "<group>";
+		};
+		BD8D782E2BDF3D9400909914 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				BD8D782F2BDF3DE600909914 /* Accelerometer */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		BD8D782F2BDF3DE600909914 /* Accelerometer */ = {
+			isa = PBXGroup;
+			children = (
+				BD8D78342BDF3E4700909914 /* Test */,
+			);
+			path = Accelerometer;
+			sourceTree = "<group>";
+		};
+		BD8D78342BDF3E4700909914 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				BD8D78352BDF3E6B00909914 /* TypeA.swift */,
+				BD8D78382BDF3ED800909914 /* TypeB.swift */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,7 +294,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD8D78392BDF3ED800909914 /* TypeB.swift in Sources */,
 				BD8D78002BDF369F00909914 /* ViewController.swift in Sources */,
+				BD8D78362BDF3E6B00909914 /* TypeA.swift in Sources */,
 				BD8D77FC2BDF369F00909914 /* AppDelegate.swift in Sources */,
 				BD8D77FE2BDF369F00909914 /* SceneDelegate.swift in Sources */,
 			);
@@ -273,6 +307,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD8D78132BDF36A000909914 /* HATests.swift in Sources */,
+				BD8D783A2BDF3ED800909914 /* TypeB.swift in Sources */,
+				BD8D78372BDF3E6B00909914 /* TypeA.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
