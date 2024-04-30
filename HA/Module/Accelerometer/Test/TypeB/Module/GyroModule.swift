@@ -17,13 +17,13 @@ class DefaultGyroModule: DefaultCoreMotionBaseMudule {
     func startGyroUpdates(showConsol: Bool) {
         manager.gyroUpdateInterval = gyroSettingValue.interval.value
         
-        // 가속도계 데이터 수집을 시작하고 업데이트를 처리하는 클로저
+        // Gyro 데이터 수집을 시작하고 업데이트를 처리하는 클로저
         manager.startGyroUpdates(to: accelerometerSettingValue.queue) { [weak self] (data, error) in
             
             guard let self = self else { return }
             
             guard let gyro = data else {
-                print("가속도계 데이터를 가져올 수 없습니다: \(error?.localizedDescription ?? "알 수 없는 오류")")
+                print("Gyro 데이터를 가져올 수 없습니다: \(error?.localizedDescription ?? "알 수 없는 오류")")
                 return
             }
             
@@ -34,12 +34,12 @@ class DefaultGyroModule: DefaultCoreMotionBaseMudule {
             )
 
             if showConsol {
-                print("X축 가속도: \(gyro.rotationRate.x), Y축 가속도: \(gyro.rotationRate.y), Z축 가속도: \(gyro.rotationRate.z)")
+                print("X축: \(gyro.rotationRate.x), Y축: \(gyro.rotationRate.y), Z축: \(gyro.rotationRate.z)")
             }
         }
     }
 
-    //가속도계 기능 비활성화
+    //Gyro 기능 비활성화
     func stopGyroUpdates() {
         manager.stopGyroUpdates()
     }

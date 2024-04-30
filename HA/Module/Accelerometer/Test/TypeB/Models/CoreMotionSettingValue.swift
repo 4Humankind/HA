@@ -27,11 +27,11 @@ struct CoreMotionSettingValue {
         case .gyro:
             switch sensitivity {
             case .sensitive:
-                return 0
+                return 1
             case .normal:
-                return 0
+                return 3
             case .insensitive:
-                return 0
+                return 5
             }
         case .deviceMotion:
             switch sensitivity {
