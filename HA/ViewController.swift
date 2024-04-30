@@ -9,8 +9,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let center = TypeB_CoreMotionCenter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
+        center.startMotionUpdate(sensor: .gyro)
     }
 }

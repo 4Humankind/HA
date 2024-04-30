@@ -9,112 +9,6 @@ import Foundation
 
 import CoreMotion
 
-class Observable<T> {
-    
-    var value: T? {
-        didSet {
-            self.listener?(value)
-        }
-    }
-    
-    init(_ value: T?) {
-        self.value = value
-    }
-    
-    private var listener: ((T?) -> Void)?
-    
-    func bind(_ listener: @escaping (T?) -> Void) {
-        listener(value)
-        self.listener = listener
-    }
-}
-
-struct Acceleration {
-    var x: Double
-    var y: Double
-    var z: Double
-}
-
-struct CoreMotionSettingValue {
-    var sensor: CoreMotionSensorEnum
-    var sensitivity: SensitivityEnum = .normal
-    var interval: IntervalEnum = .hz60
-    var queue: OperationQueue = .main
-    
-    var notificationValue: Double {
-        switch sensor {
-        case .accelerometer:
-            switch sensitivity {
-            case .sensitive:
-                return 1
-            case .normal:
-                return 3
-            case .insensitive:
-                return 5
-            }
-        case .gyro:
-            switch sensitivity {
-            case .sensitive:
-                return 0
-            case .normal:
-                return 0
-            case .insensitive:
-                return 0
-            }
-        case .deviceMotion:
-            switch sensitivity {
-            case .sensitive:
-                return 0
-            case .normal:
-                return 0
-            case .insensitive:
-                return 0
-            }
-        case .magnetometer:
-            switch sensitivity {
-            case .sensitive:
-                return 0
-            case .normal:
-                return 0
-            case .insensitive:
-                return 0
-            }
-        }
-    }
-}
-
-enum CoreMotionSensorEnum: CaseIterable {
-    case accelerometer
-    case gyro
-    case deviceMotion
-    case magnetometer
-}
-
-enum SensitivityEnum {
-    case sensitive
-    case normal
-    case insensitive
-}
-
-enum IntervalEnum {
-    case hz30
-    case hz60
-    case hz120
-}
-
-extension IntervalEnum {
-    var value: Double {
-        switch self {
-        case .hz30:
-            return 1 / 30
-        case .hz60:
-            return 1 / 60
-        case .hz120:
-            return 1 / 120
-        }
-    }
-}
-
 class TypeB_CoreMotionCenter {
     // MARK: - Properties
     
@@ -123,6 +17,8 @@ class TypeB_CoreMotionCenter {
     
     // MARK: - ObservableProperties
     private var acceleration: Observable<Acceleration> = Observable(Acceleration(x: 0, y: 0, z: 0))
+    
+    private var gyro: Observable<Gyro> = Observable(Gyro(x: 0, y: 0, z: 0))
     
     
     // MARK: - SettingProperteis
@@ -257,3 +153,39 @@ private extension TypeB_CoreMotionCenter {
         manager.stopAccelerometerUpdates()
     }
 }
+
+// MARK: - GyroMethods
+
+extension TypeB_CoreMotionCenter {
+    //자이로 기능 활성화
+    func startGyroUpdates(showConsol: Bool) {
+        manager.gyroUpdateInterval = gyroSettingValue.interval.value
+        
+        // 가속도계 데이터 수집을 시작하고 업데이트를 처리하는 클로저
+        manager.startGyroUpdates(to: accelerometerSettingValue.queue) { [weak self] (data, error) in
+            
+            guard let self = self else { return }
+            
+            guard let gyro = data else {
+                print("가속도계 데이터를 가져올 수 없습니다: \(error?.localizedDescription ?? "알 수 없는 오류")")
+                return
+            }
+            
+            self.gyro.value = Gyro(
+                x: gyro.rotationRate.x,
+                y: gyro.rotationRate.y,
+                z: gyro.rotationRate.z
+            )
+
+            if showConsol {
+                print("X축 가속도: \(gyro.rotationRate.x), Y축 가속도: \(gyro.rotationRate.y), Z축 가속도: \(gyro.rotationRate.z)")
+            }
+        }
+    }
+
+    //가속도계 기능 비활성화
+    func stopGyroUpdates() {
+        manager.stopGyroUpdates()
+    }
+}
+

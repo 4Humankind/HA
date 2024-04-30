@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		082D168A2BE0AB6E00200757 /* Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D16892BE0AB6E00200757 /* Acceleration.swift */; };
+		082D168C2BE0AB7D00200757 /* Gyro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D168B2BE0AB7D00200757 /* Gyro.swift */; };
+		082D168F2BE0AB9700200757 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D168E2BE0AB9700200757 /* Observable.swift */; };
+		082D16922BE0ABFE00200757 /* CoreMotionSensorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D16912BE0ABFE00200757 /* CoreMotionSensorEnum.swift */; };
+		082D16942BE0AC0E00200757 /* SensitivityEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D16932BE0AC0E00200757 /* SensitivityEnum.swift */; };
+		082D16962BE0AC2000200757 /* IntervalEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D16952BE0AC2000200757 /* IntervalEnum.swift */; };
+		082D16982BE0AC3F00200757 /* CoreMotionSettingValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D16972BE0AC3F00200757 /* CoreMotionSettingValue.swift */; };
+		082D169B2BE0AD1200200757 /* AccelerometerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D169A2BE0AD1200200757 /* AccelerometerModule.swift */; };
+		082D169D2BE0ADBC00200757 /* CoreMotionBaseMudule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D169C2BE0ADBC00200757 /* CoreMotionBaseMudule.swift */; };
+		082D169F2BE0AFAC00200757 /* GyroModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D169E2BE0AFAC00200757 /* GyroModule.swift */; };
 		BD8D77FC2BDF369F00909914 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D77FB2BDF369F00909914 /* AppDelegate.swift */; };
 		BD8D77FE2BDF369F00909914 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D77FD2BDF369F00909914 /* SceneDelegate.swift */; };
 		BD8D78002BDF369F00909914 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D77FF2BDF369F00909914 /* ViewController.swift */; };
@@ -40,6 +50,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		082D16892BE0AB6E00200757 /* Acceleration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acceleration.swift; sourceTree = "<group>"; };
+		082D168B2BE0AB7D00200757 /* Gyro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gyro.swift; sourceTree = "<group>"; };
+		082D168E2BE0AB9700200757 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		082D16912BE0ABFE00200757 /* CoreMotionSensorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionSensorEnum.swift; sourceTree = "<group>"; };
+		082D16932BE0AC0E00200757 /* SensitivityEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensitivityEnum.swift; sourceTree = "<group>"; };
+		082D16952BE0AC2000200757 /* IntervalEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalEnum.swift; sourceTree = "<group>"; };
+		082D16972BE0AC3F00200757 /* CoreMotionSettingValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionSettingValue.swift; sourceTree = "<group>"; };
+		082D169A2BE0AD1200200757 /* AccelerometerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerometerModule.swift; sourceTree = "<group>"; };
+		082D169C2BE0ADBC00200757 /* CoreMotionBaseMudule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionBaseMudule.swift; sourceTree = "<group>"; };
+		082D169E2BE0AFAC00200757 /* GyroModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroModule.swift; sourceTree = "<group>"; };
 		BD8D77F82BDF369F00909914 /* HA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD8D77FB2BDF369F00909914 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD8D77FD2BDF369F00909914 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +102,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		082D16872BE0AB2D00200757 /* TypeB */ = {
+			isa = PBXGroup;
+			children = (
+				082D16992BE0ACAB00200757 /* Module */,
+				082D168D2BE0AB8E00200757 /* Common */,
+				082D16882BE0AB4600200757 /* Models */,
+				BD8D78382BDF3ED800909914 /* TypeB.swift */,
+			);
+			path = TypeB;
+			sourceTree = "<group>";
+		};
+		082D16882BE0AB4600200757 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				082D16902BE0ABF400200757 /* Enums */,
+				082D16892BE0AB6E00200757 /* Acceleration.swift */,
+				082D168B2BE0AB7D00200757 /* Gyro.swift */,
+				082D16972BE0AC3F00200757 /* CoreMotionSettingValue.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		082D168D2BE0AB8E00200757 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				082D168E2BE0AB9700200757 /* Observable.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		082D16902BE0ABF400200757 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				082D16912BE0ABFE00200757 /* CoreMotionSensorEnum.swift */,
+				082D16932BE0AC0E00200757 /* SensitivityEnum.swift */,
+				082D16952BE0AC2000200757 /* IntervalEnum.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		082D16992BE0ACAB00200757 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				082D169C2BE0ADBC00200757 /* CoreMotionBaseMudule.swift */,
+				082D169A2BE0AD1200200757 /* AccelerometerModule.swift */,
+				082D169E2BE0AFAC00200757 /* GyroModule.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
 		BD8D77EF2BDF369F00909914 = {
 			isa = PBXGroup;
 			children = (
@@ -153,7 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				BD8D78352BDF3E6B00909914 /* TypeA.swift */,
-				BD8D78382BDF3ED800909914 /* TypeB.swift */,
+				082D16872BE0AB2D00200757 /* TypeB */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -294,11 +364,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				082D16962BE0AC2000200757 /* IntervalEnum.swift in Sources */,
+				082D168F2BE0AB9700200757 /* Observable.swift in Sources */,
+				082D169B2BE0AD1200200757 /* AccelerometerModule.swift in Sources */,
 				BD8D78392BDF3ED800909914 /* TypeB.swift in Sources */,
+				082D168A2BE0AB6E00200757 /* Acceleration.swift in Sources */,
 				BD8D78002BDF369F00909914 /* ViewController.swift in Sources */,
 				BD8D78362BDF3E6B00909914 /* TypeA.swift in Sources */,
 				BD8D77FC2BDF369F00909914 /* AppDelegate.swift in Sources */,
 				BD8D77FE2BDF369F00909914 /* SceneDelegate.swift in Sources */,
+				082D16922BE0ABFE00200757 /* CoreMotionSensorEnum.swift in Sources */,
+				082D16982BE0AC3F00200757 /* CoreMotionSettingValue.swift in Sources */,
+				082D169F2BE0AFAC00200757 /* GyroModule.swift in Sources */,
+				082D16942BE0AC0E00200757 /* SensitivityEnum.swift in Sources */,
+				082D168C2BE0AB7D00200757 /* Gyro.swift in Sources */,
+				082D169D2BE0ADBC00200757 /* CoreMotionBaseMudule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
