@@ -7,5 +7,11 @@
 
 import Foundation
 
-class Gyro: ThreePointAxis {
+struct Gyro: ThreePointAxisProtocol {
+    var x: Double
+    
+    var y: Double
+    
+    var z: Double
+    
 }

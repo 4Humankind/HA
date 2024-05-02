@@ -11,17 +11,13 @@ import CoreMotion
 
 class DefaultMagnetometerModule: CoreMotionMuduleProtocol {
     
-    var manager: CMMotionManager
+    var manager: CMMotionManager = MyCMMotionManager.shared
     
     // MARK: - ObservableProperties
-    var observedValue: Observable<ThreePointAxis> = Observable(Magnetism(x: 0, y: 0, z: 0))
+    var observedValue: Observable<ThreePointAxisProtocol> = Observable(Magnetism(x: 0, y: 0, z: 0))
     
     // MARK: - SettingProperteis
     var settingValue = CoreMotionSettingValue(sensor: .magnetometer)
-    
-    init(manager: CMMotionManager) {
-        self.manager = manager
-    }
     
     //Magnetometer 기능 활성화
     func startUpdates(showConsol: Bool) {

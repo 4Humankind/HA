@@ -13,7 +13,7 @@ protocol CoreMotionMuduleProtocol {
 
     var manager: CMMotionManager { get set }
     
-    var observedValue: Observable<ThreePointAxis> { get set }
+    var observedValue: Observable<ThreePointAxisProtocol> { get set }
     var settingValue: CoreMotionSettingValue { get set }
     
     func startUpdates(showConsol: Bool)

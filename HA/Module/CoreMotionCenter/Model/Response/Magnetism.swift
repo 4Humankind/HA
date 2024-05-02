@@ -7,5 +7,11 @@
 
 import Foundation
 
-class Magnetism: ThreePointAxis {
+struct Magnetism: ThreePointAxisProtocol {
+    var x: Double
+    
+    var y: Double
+    
+    var z: Double
+    
 }
