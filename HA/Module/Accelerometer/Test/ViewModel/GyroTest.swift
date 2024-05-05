@@ -27,7 +27,9 @@ class GyroTest {
                 if let data = data {
                     self.intervalCount += 1
                     let gyro = data.rotationRate
-                    let gyroData = GyroscopeData(roll: gyro.x, pitch: gyro.y, yaw: gyro.z)
+                    let gyroData = GyroscopeData(roll: gyro.x,
+                                                 pitch: gyro.y,
+                                                 yaw: gyro.z)
                     
                     self.delegate?.didUpdateGyroscopeData(count: self.intervalCount, gyroData: gyroData)
                 }

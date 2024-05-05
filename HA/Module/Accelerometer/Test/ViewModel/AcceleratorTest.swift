@@ -9,7 +9,7 @@ import Foundation
 import CoreMotion
 
 protocol AcceleratorTestDelegate {
-    func didUpdateAcceleratorData(count: Int, x: Double, y: Double, z: Double)
+    func didUpdateAcceleratorData(count: Int, acceleratorMeter: AcceleratorData)
 }
 
 class AcceleratorTest {
@@ -24,11 +24,13 @@ class AcceleratorTest {
         if motionManager.isAccelerometerAvailable {
             motionManager.accelerometerUpdateInterval = 1.0 / 60.0
             motionManager.startAccelerometerUpdates(to: .main) { data, error in
-                if let validData = data {
-                    let x = validData.acceleration.x
-                    let y = validData.acceleration.y
-                    let z = validData.acceleration.z
-                    self.delegate?.didUpdateAcceleratorData(count: self.intervalCount, x: x, y: y, z: z)
+                if let data = data {
+                    let acceleratometer = data.acceleration
+                    let acceleratometerData = AcceleratorData(x: acceleratometer.x,
+                                                              y: acceleratometer.y,
+                                                              z: acceleratometer.z)
+                    self.delegate?.didUpdateAcceleratorData(count: self.intervalCount,
+                                                            acceleratorMeter: acceleratometerData)
                 }
             }
         }

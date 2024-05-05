@@ -25,6 +25,7 @@ import UIKit
 class TestingVC: UIViewController {
     var accelerometerViewModel = AcceleratorTest()
     var gyroscopeViewmodel = GyroTest()
+    var motionViewModel = DeviceMotionTest()
     
     override func viewDidLoad() {
         view.backgroundColor = .black
@@ -44,13 +45,19 @@ class TestingVC: UIViewController {
         gyroscopeViewmodel.delegate = self
         gyroscopeViewmodel.startGyroUpdate()
     }
+    
+    func displayMotionData() {
+        motionViewModel.delegate = self
+        motionViewModel.startMotionUpdate()
+//        motionViewModel.updateUsingQueue()
+    }
 }
 
 extension TestingVC: AcceleratorTestDelegate, GyroTestDelegate, MotionManagerDelegate {
-    func didUpdateAcceleratorData(count: Int, x: Double, y: Double, z: Double) {
-        print("\(count)interval - x:", x)
-        print("\(count)interval - y:", y)
-        print("\(count)interval - z:", z)
+    func didUpdateAcceleratorData(count: Int, acceleratorMeter: AcceleratorData) {
+        print("\(count)interval - x:", acceleratorMeter.x)
+        print("\(count)interval - y:", acceleratorMeter.y)
+        print("\(count)interval - z:", acceleratorMeter.z)
     }
     
     func didUpdateGyroscopeData(count: Int, gyroData: GyroscopeData) {
