@@ -9,7 +9,7 @@ import Foundation
 
 import CoreMotion
 
-class MyCMMotionManager: CMMotionManager {
+class MyCMMotionManager {
     static var shared: CMMotionManager = CMMotionManager()
-    private override init() { }
+    private init() { }
 }
