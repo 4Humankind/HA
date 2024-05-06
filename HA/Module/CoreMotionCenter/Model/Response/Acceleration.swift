@@ -7,5 +7,11 @@
 
 import Foundation
 
-class Acceleration: ThreePointAxis {
+struct Acceleration: ThreePointAxisProtocol {
+    var x: Double
+    
+    var y: Double
+    
+    var z: Double
+    
 }

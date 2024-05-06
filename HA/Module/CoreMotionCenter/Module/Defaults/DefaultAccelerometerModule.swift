@@ -11,17 +11,13 @@ import CoreMotion
 
 class DefaultAccelerometerModule: CoreMotionMuduleProtocol {
     
-    var manager: CMMotionManager
+    var manager: CMMotionManager = MyCMMotionManager.shared
     
     // MARK: - ObservableProperties
-    var observedValue: Observable<ThreePointAxis> = Observable(Acceleration(x: 0, y: 0, z: 0))
+    var observedValue: Observable<ThreePointAxisProtocol> = Observable(Acceleration(x: 0, y: 0, z: 0))
     
     // MARK: - SettingProperteis
     var settingValue: CoreMotionSettingValue = CoreMotionSettingValue(sensor: .accelerometer)
-    
-    init(manager: CMMotionManager) {
-        self.manager = manager
-    }
     
     func startUpdates(showConsol: Bool) {
         manager.accelerometerUpdateInterval = settingValue.interval.value

@@ -7,5 +7,11 @@
 
 import Foundation
 
-class DeviceMotion: ThreePointAxis {
+struct DeviceMotion: ThreePointAxisProtocol {
+    var x: Double
+    
+    var y: Double
+    
+    var z: Double
+    
 }

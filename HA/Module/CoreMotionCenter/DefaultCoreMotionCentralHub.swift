@@ -10,14 +10,23 @@ import Foundation
 import CoreMotion
 
 class DefaultCoreMotionCentralHub: CoreMotionCentralHubProtocol{
-    // MARK: - Manager
-    var manager: CMMotionManager = CMMotionManager()
     
     // MARK: - Modules
-    lazy var acclermeterModule: CoreMotionMuduleProtocol = DefaultAccelerometerModule(manager: self.manager)
-    lazy var gyroModule: CoreMotionMuduleProtocol = DefaultGyroModule(manager: self.manager)
-    lazy var deviceMotionModule: CoreMotionMuduleProtocol = DefaultDeviceMotionModule(manager: self.manager)
-    lazy var magnetmeterModule: CoreMotionMuduleProtocol = DefaultMagnetometerModule(manager: self.manager)
+    var acclermeterModule: CoreMotionMuduleProtocol
+    var gyroModule: CoreMotionMuduleProtocol
+    var deviceMotionModule: CoreMotionMuduleProtocol
+    var magnetmeterModule: CoreMotionMuduleProtocol
+    
+    init(acclermeterModule: CoreMotionMuduleProtocol = DefaultAccelerometerModule(),
+         gyroModule: CoreMotionMuduleProtocol = DefaultGyroModule(),
+         deviceMotionModule: CoreMotionMuduleProtocol = DefaultDeviceMotionModule(),
+         magnetmeterModule: CoreMotionMuduleProtocol = DefaultMagnetometerModule()
+    ) {
+        self.acclermeterModule = acclermeterModule
+        self.gyroModule = gyroModule
+        self.deviceMotionModule = deviceMotionModule
+        self.magnetmeterModule = magnetmeterModule
+    }
 }
 
 extension DefaultCoreMotionCentralHub {

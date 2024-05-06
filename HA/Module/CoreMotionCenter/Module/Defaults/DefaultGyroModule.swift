@@ -11,17 +11,13 @@ import CoreMotion
 
 class DefaultGyroModule: CoreMotionMuduleProtocol {
     
-    var manager: CMMotionManager
+    var manager: CMMotionManager = MyCMMotionManager.shared
     
     // MARK: - ObservableProperties
-    var observedValue: Observable<ThreePointAxis> = Observable(Gyro(x: 0, y: 0, z: 0))
+    var observedValue: Observable<ThreePointAxisProtocol> = Observable(Gyro(x: 0, y: 0, z: 0))
     
     // MARK: - SettingProperteis
     var settingValue = CoreMotionSettingValue(sensor: .gyro)
-    
-    init(manager: CMMotionManager) {
-        self.manager = manager
-    }
     
     //Gyro 기능 활성화
     func startUpdates(showConsol: Bool) {

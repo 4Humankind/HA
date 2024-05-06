@@ -11,17 +11,13 @@ import CoreMotion
 
 class DefaultDeviceMotionModule: CoreMotionMuduleProtocol {
     
-    var manager: CMMotionManager
+    var manager: CMMotionManager= MyCMMotionManager.shared
     
     // MARK: - ObservableProperties
-    var observedValue: Observable<ThreePointAxis> = Observable(DeviceMotion(x: 0, y: 0, z: 0))
+    var observedValue: Observable<ThreePointAxisProtocol> = Observable(DeviceMotion(x: 0, y: 0, z: 0))
     
     // MARK: - SettingProperteis
     var settingValue = CoreMotionSettingValue(sensor: .deviceMotion)
-    
-    init(manager: CMMotionManager) {
-        self.manager = manager
-    }
     
     //DeviceMotion 기능 활성화
     func startUpdates(showConsol: Bool) {

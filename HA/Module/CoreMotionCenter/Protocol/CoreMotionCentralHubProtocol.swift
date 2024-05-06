@@ -10,7 +10,6 @@ import Foundation
 import CoreMotion
 
 protocol CoreMotionCentralHubProtocol {
-    var manager: CMMotionManager { get set }
     
     var acclermeterModule: CoreMotionMuduleProtocol { get set }
     var gyroModule: CoreMotionMuduleProtocol { get set }
