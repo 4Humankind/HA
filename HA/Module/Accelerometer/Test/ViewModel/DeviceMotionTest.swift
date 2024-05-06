@@ -13,8 +13,8 @@ protocol MotionManagerDelegate: AnyObject {
 }
 
 class DeviceMotionTest {
-    private var motionManager: CMMotionManager!
-    private var timer = Timer()
+    var motionManager: CMMotionManager!
+    var timer = Timer()
     private var intervalCount = 0
     private var deviceMotionInterval: TimeInterval = 0.0
     var delegate: MotionManagerDelegate?
@@ -67,6 +67,10 @@ class DeviceMotionTest {
                     let roll = data.attitude.roll
                 }
             })
+            // A RunLoop object processes input for sources, such as mouse and keyboard events from the window system and Port objects.
+            // A RunLoop object also processes Timer events.
+            // 결국에는 쓰레드 문제를 해결하기 위해..
+            
             RunLoop.current.add(timer, forMode: .default)
         }
     }
@@ -75,4 +79,3 @@ class DeviceMotionTest {
         motionManager.stopDeviceMotionUpdates()
     }
 }
-
