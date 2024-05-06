@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		082D168A2BE0AB6E00200757 /* Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D16892BE0AB6E00200757 /* Acceleration.swift */; };
+		082D168C2BE0AB7D00200757 /* Gyro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D168B2BE0AB7D00200757 /* Gyro.swift */; };
+		082D168F2BE0AB9700200757 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D168E2BE0AB9700200757 /* Observable.swift */; };
+		082D16922BE0ABFE00200757 /* CoreMotionSensorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D16912BE0ABFE00200757 /* CoreMotionSensorEnum.swift */; };
+		082D16942BE0AC0E00200757 /* SensitivityEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D16932BE0AC0E00200757 /* SensitivityEnum.swift */; };
+		082D16962BE0AC2000200757 /* IntervalEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D16952BE0AC2000200757 /* IntervalEnum.swift */; };
+		082D16982BE0AC3F00200757 /* CoreMotionSettingValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D16972BE0AC3F00200757 /* CoreMotionSettingValue.swift */; };
+		08AAEDA52BE3C4920045074F /* MyCMMotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAEDA42BE3C4920045074F /* MyCMMotionManager.swift */; };
+		08AD5A7D2BE0B43D0009C873 /* DefaultCoreMotionCentralHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD5A7C2BE0B43D0009C873 /* DefaultCoreMotionCentralHub.swift */; };
+		08AD5A802BE0B68B0009C873 /* DeviceMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD5A7F2BE0B68B0009C873 /* DeviceMotion.swift */; };
+		08AD5A832BE0B7AF0009C873 /* Magnetism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD5A822BE0B7AF0009C873 /* Magnetism.swift */; };
+		08AD5A892BE0E44C0009C873 /* CoreMotionMuduleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD5A882BE0E44C0009C873 /* CoreMotionMuduleProtocol.swift */; };
+		08AD5A8B2BE0E5D60009C873 /* DefaultAccelerometerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD5A8A2BE0E5D60009C873 /* DefaultAccelerometerModule.swift */; };
+		08AD5A8E2BE0E6840009C873 /* ThreePointAxisProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD5A8D2BE0E6840009C873 /* ThreePointAxisProtocol.swift */; };
+		08AD5A902BE0E7790009C873 /* DefaultGyroModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD5A8F2BE0E7790009C873 /* DefaultGyroModule.swift */; };
+		08AD5A922BE0E7EB0009C873 /* DefaultDeviceMotionModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD5A912BE0E7EB0009C873 /* DefaultDeviceMotionModule.swift */; };
+		08AD5A942BE0E8480009C873 /* DefaultMagnetometerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD5A932BE0E8480009C873 /* DefaultMagnetometerModule.swift */; };
+		08AD5A972BE0ED0A0009C873 /* CoreMotionCentralHubProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD5A962BE0ED0A0009C873 /* CoreMotionCentralHubProtocol.swift */; };
 		BD8D77FC2BDF369F00909914 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D77FB2BDF369F00909914 /* AppDelegate.swift */; };
 		BD8D77FE2BDF369F00909914 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D77FD2BDF369F00909914 /* SceneDelegate.swift */; };
 		BD8D78002BDF369F00909914 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D77FF2BDF369F00909914 /* ViewController.swift */; };
@@ -18,8 +36,6 @@
 		BD8D782D2BDF389D00909914 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D782C2BDF389D00909914 /* SnapKit */; };
 		BD8D78362BDF3E6B00909914 /* TestingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D78352BDF3E6B00909914 /* TestingVC.swift */; };
 		BD8D78372BDF3E6B00909914 /* TestingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D78352BDF3E6B00909914 /* TestingVC.swift */; };
-		BD8D78392BDF3ED800909914 /* TypeB.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D78382BDF3ED800909914 /* TypeB.swift */; };
-		BD8D783A2BDF3ED800909914 /* TypeB.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D78382BDF3ED800909914 /* TypeB.swift */; };
 		BDC20AA42BE8482000DFA5A7 /* MotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC20AA32BE8482000DFA5A7 /* MotionData.swift */; };
 		BDE1B3922BE75683004103C3 /* AcceleratorTestCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE1B3912BE75683004103C3 /* AcceleratorTestCases.swift */; };
 		BDE1B3942BE7DFC8004103C3 /* GyroTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE1B3932BE7DFC8004103C3 /* GyroTest.swift */; };
@@ -47,6 +63,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		082D16892BE0AB6E00200757 /* Acceleration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acceleration.swift; sourceTree = "<group>"; };
+		082D168B2BE0AB7D00200757 /* Gyro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gyro.swift; sourceTree = "<group>"; };
+		082D168E2BE0AB9700200757 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		082D16912BE0ABFE00200757 /* CoreMotionSensorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionSensorEnum.swift; sourceTree = "<group>"; };
+		082D16932BE0AC0E00200757 /* SensitivityEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensitivityEnum.swift; sourceTree = "<group>"; };
+		082D16952BE0AC2000200757 /* IntervalEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalEnum.swift; sourceTree = "<group>"; };
+		082D16972BE0AC3F00200757 /* CoreMotionSettingValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionSettingValue.swift; sourceTree = "<group>"; };
+		08AAEDA42BE3C4920045074F /* MyCMMotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCMMotionManager.swift; sourceTree = "<group>"; };
+		08AD5A7C2BE0B43D0009C873 /* DefaultCoreMotionCentralHub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCoreMotionCentralHub.swift; sourceTree = "<group>"; };
+		08AD5A7F2BE0B68B0009C873 /* DeviceMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMotion.swift; sourceTree = "<group>"; };
+		08AD5A822BE0B7AF0009C873 /* Magnetism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Magnetism.swift; sourceTree = "<group>"; };
+		08AD5A882BE0E44C0009C873 /* CoreMotionMuduleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionMuduleProtocol.swift; sourceTree = "<group>"; };
+		08AD5A8A2BE0E5D60009C873 /* DefaultAccelerometerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAccelerometerModule.swift; sourceTree = "<group>"; };
+		08AD5A8D2BE0E6840009C873 /* ThreePointAxisProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreePointAxisProtocol.swift; sourceTree = "<group>"; };
+		08AD5A8F2BE0E7790009C873 /* DefaultGyroModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGyroModule.swift; sourceTree = "<group>"; };
+		08AD5A912BE0E7EB0009C873 /* DefaultDeviceMotionModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDeviceMotionModule.swift; sourceTree = "<group>"; };
+		08AD5A932BE0E8480009C873 /* DefaultMagnetometerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMagnetometerModule.swift; sourceTree = "<group>"; };
+		08AD5A962BE0ED0A0009C873 /* CoreMotionCentralHubProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionCentralHubProtocol.swift; sourceTree = "<group>"; };
 		BD8D77F82BDF369F00909914 /* HA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD8D77FB2BDF369F00909914 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD8D77FD2BDF369F00909914 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,7 +94,6 @@
 		BD8D781C2BDF36A000909914 /* HAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAUITests.swift; sourceTree = "<group>"; };
 		BD8D781E2BDF36A000909914 /* HAUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BD8D78352BDF3E6B00909914 /* TestingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingVC.swift; sourceTree = "<group>"; };
-		BD8D78382BDF3ED800909914 /* TypeB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeB.swift; sourceTree = "<group>"; };
 		BDC20AA32BE8482000DFA5A7 /* MotionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionData.swift; sourceTree = "<group>"; };
 		BDE1B3912BE75683004103C3 /* AcceleratorTestCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleratorTestCases.swift; sourceTree = "<group>"; };
 		BDE1B3932BE7DFC8004103C3 /* GyroTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroTest.swift; sourceTree = "<group>"; };
@@ -96,6 +129,95 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		082D16882BE0AB4600200757 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				08AD5A812BE0B68F0009C873 /* Response */,
+				082D16902BE0ABF400200757 /* Enum */,
+				082D16972BE0AC3F00200757 /* CoreMotionSettingValue.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		082D168D2BE0AB8E00200757 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				082D168E2BE0AB9700200757 /* Observable.swift */,
+				08AAEDA42BE3C4920045074F /* MyCMMotionManager.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		082D16902BE0ABF400200757 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				082D16912BE0ABFE00200757 /* CoreMotionSensorEnum.swift */,
+				082D16932BE0AC0E00200757 /* SensitivityEnum.swift */,
+				082D16952BE0AC2000200757 /* IntervalEnum.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		082D16992BE0ACAB00200757 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				08AD5A8C2BE0E5DC0009C873 /* Defaults */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		08AAEDA32BE3C3EE0045074F /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				08AD5A8D2BE0E6840009C873 /* ThreePointAxisProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		08AD5A7E2BE0B44D0009C873 /* CoreMotionCenter */ = {
+			isa = PBXGroup;
+			children = (
+				08AD5A952BE0ECF60009C873 /* Protocol */,
+				082D16992BE0ACAB00200757 /* Module */,
+				082D168D2BE0AB8E00200757 /* Common */,
+				082D16882BE0AB4600200757 /* Model */,
+				08AD5A7C2BE0B43D0009C873 /* DefaultCoreMotionCentralHub.swift */,
+			);
+			path = CoreMotionCenter;
+			sourceTree = "<group>";
+		};
+		08AD5A812BE0B68F0009C873 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				08AAEDA32BE3C3EE0045074F /* Protocol */,
+				082D16892BE0AB6E00200757 /* Acceleration.swift */,
+				082D168B2BE0AB7D00200757 /* Gyro.swift */,
+				08AD5A7F2BE0B68B0009C873 /* DeviceMotion.swift */,
+				08AD5A822BE0B7AF0009C873 /* Magnetism.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		08AD5A8C2BE0E5DC0009C873 /* Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				08AD5A8A2BE0E5D60009C873 /* DefaultAccelerometerModule.swift */,
+				08AD5A8F2BE0E7790009C873 /* DefaultGyroModule.swift */,
+				08AD5A912BE0E7EB0009C873 /* DefaultDeviceMotionModule.swift */,
+				08AD5A932BE0E8480009C873 /* DefaultMagnetometerModule.swift */,
+			);
+			path = Defaults;
+			sourceTree = "<group>";
+		};
+		08AD5A952BE0ECF60009C873 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				08AD5A962BE0ED0A0009C873 /* CoreMotionCentralHubProtocol.swift */,
+				08AD5A882BE0E44C0009C873 /* CoreMotionMuduleProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		BD8D77EF2BDF369F00909914 = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +273,7 @@
 		BD8D782E2BDF3D9400909914 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				08AD5A7E2BE0B44D0009C873 /* CoreMotionCenter */,
 				BD8D782F2BDF3DE600909914 /* Accelerometer */,
 			);
 			path = Module;
@@ -170,7 +293,6 @@
 				BDE1B3982BE83A62004103C3 /* View */,
 				BDE1B3972BE83A48004103C3 /* Model */,
 				BDFC50192BE83D1D00A875A2 /* ViewModel */,
-				BD8D78382BDF3ED800909914 /* TypeB.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -349,7 +471,6 @@
 			files = (
 				BDE1B3942BE7DFC8004103C3 /* GyroTest.swift in Sources */,
 				BDE1B39E2BE83B14004103C3 /* DeviceMotionTest.swift in Sources */,
-				BD8D78392BDF3ED800909914 /* TypeB.swift in Sources */,
 				BDE1B3962BE83007004103C3 /* AcceleratorTest.swift in Sources */,
 				BD8D78002BDF369F00909914 /* ViewController.swift in Sources */,
 				BD8D78362BDF3E6B00909914 /* TestingVC.swift in Sources */,
@@ -358,6 +479,27 @@
 				BDE1B39A2BE83AA8004103C3 /* AcceleratorData.swift in Sources */,
 				BDE1B39C2BE83AD5004103C3 /* GyroscopeData.swift in Sources */,
 				BDC20AA42BE8482000DFA5A7 /* MotionData.swift in Sources */,
+				082D16962BE0AC2000200757 /* IntervalEnum.swift in Sources */,
+				08AD5A7D2BE0B43D0009C873 /* DefaultCoreMotionCentralHub.swift in Sources */,
+				08AD5A8E2BE0E6840009C873 /* ThreePointAxisProtocol.swift in Sources */,
+				082D168F2BE0AB9700200757 /* Observable.swift in Sources */,
+				08AD5A8B2BE0E5D60009C873 /* DefaultAccelerometerModule.swift in Sources */,
+				08AD5A972BE0ED0A0009C873 /* CoreMotionCentralHubProtocol.swift in Sources */,
+				08AD5A802BE0B68B0009C873 /* DeviceMotion.swift in Sources */,
+				08AD5A892BE0E44C0009C873 /* CoreMotionMuduleProtocol.swift in Sources */,
+				082D168A2BE0AB6E00200757 /* Acceleration.swift in Sources */,
+				08AD5A902BE0E7790009C873 /* DefaultGyroModule.swift in Sources */,
+				08AD5A922BE0E7EB0009C873 /* DefaultDeviceMotionModule.swift in Sources */,
+				BD8D78002BDF369F00909914 /* ViewController.swift in Sources */,
+				08AAEDA52BE3C4920045074F /* MyCMMotionManager.swift in Sources */,
+				BD8D77FC2BDF369F00909914 /* AppDelegate.swift in Sources */,
+				BD8D77FE2BDF369F00909914 /* SceneDelegate.swift in Sources */,
+				082D16922BE0ABFE00200757 /* CoreMotionSensorEnum.swift in Sources */,
+				082D16982BE0AC3F00200757 /* CoreMotionSettingValue.swift in Sources */,
+				08AD5A942BE0E8480009C873 /* DefaultMagnetometerModule.swift in Sources */,
+				082D16942BE0AC0E00200757 /* SensitivityEnum.swift in Sources */,
+				08AD5A832BE0B7AF0009C873 /* Magnetism.swift in Sources */,
+				082D168C2BE0AB7D00200757 /* Gyro.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +509,6 @@
 			files = (
 				BD8D78132BDF36A000909914 /* HATests.swift in Sources */,
 				BDE1B3922BE75683004103C3 /* AcceleratorTestCases.swift in Sources */,
-				BD8D783A2BDF3ED800909914 /* TypeB.swift in Sources */,
 				BD8D78372BDF3E6B00909914 /* TestingVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -534,7 +675,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2U86LHQK8Q;
+				DEVELOPMENT_TEAM = W5QTRMS954;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HA/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -566,7 +707,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2U86LHQK8Q;
+				DEVELOPMENT_TEAM = W5QTRMS954;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HA/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
