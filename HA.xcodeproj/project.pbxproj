@@ -34,17 +34,7 @@
 		BD8D781D2BDF36A000909914 /* HAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D781C2BDF36A000909914 /* HAUITests.swift */; };
 		BD8D781F2BDF36A000909914 /* HAUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D781E2BDF36A000909914 /* HAUITestsLaunchTests.swift */; };
 		BD8D782D2BDF389D00909914 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D782C2BDF389D00909914 /* SnapKit */; };
-		BD8D78362BDF3E6B00909914 /* TestingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D78352BDF3E6B00909914 /* TestingVC.swift */; };
-		BD8D78372BDF3E6B00909914 /* TestingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D78352BDF3E6B00909914 /* TestingVC.swift */; };
-		BD8D78392BDF3ED800909914 /* TypeB.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D78382BDF3ED800909914 /* TypeB.swift */; };
-		BD8D783A2BDF3ED800909914 /* TypeB.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D78382BDF3ED800909914 /* TypeB.swift */; };
-		BDC20AA42BE8482000DFA5A7 /* MotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC20AA32BE8482000DFA5A7 /* MotionData.swift */; };
-		BDE1B3922BE75683004103C3 /* AcceleratorTestCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE1B3912BE75683004103C3 /* AcceleratorTestCases.swift */; };
-		BDE1B3942BE7DFC8004103C3 /* GyroTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE1B3932BE7DFC8004103C3 /* GyroTest.swift */; };
-		BDE1B3962BE83007004103C3 /* AcceleratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE1B3952BE83007004103C3 /* AcceleratorTest.swift */; };
-		BDE1B39A2BE83AA8004103C3 /* AcceleratorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE1B3992BE83AA8004103C3 /* AcceleratorData.swift */; };
-		BDE1B39C2BE83AD5004103C3 /* GyroscopeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE1B39B2BE83AD5004103C3 /* GyroscopeData.swift */; };
-		BDE1B39E2BE83B14004103C3 /* DeviceMotionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE1B39D2BE83B14004103C3 /* DeviceMotionTest.swift */; };
+		BD8D78362BDF3E6B00909914 /* TypeA.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D78352BDF3E6B00909914 /* TypeA.swift */; };
 		BD8D78372BDF3E6B00909914 /* TypeA.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D78352BDF3E6B00909914 /* TypeA.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,15 +86,6 @@
 		BD8D78182BDF36A000909914 /* HAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD8D781C2BDF36A000909914 /* HAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAUITests.swift; sourceTree = "<group>"; };
 		BD8D781E2BDF36A000909914 /* HAUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		BD8D78352BDF3E6B00909914 /* TestingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingVC.swift; sourceTree = "<group>"; };
-		BD8D78382BDF3ED800909914 /* TypeB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeB.swift; sourceTree = "<group>"; };
-		BDC20AA32BE8482000DFA5A7 /* MotionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionData.swift; sourceTree = "<group>"; };
-		BDE1B3912BE75683004103C3 /* AcceleratorTestCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleratorTestCases.swift; sourceTree = "<group>"; };
-		BDE1B3932BE7DFC8004103C3 /* GyroTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroTest.swift; sourceTree = "<group>"; };
-		BDE1B3952BE83007004103C3 /* AcceleratorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleratorTest.swift; sourceTree = "<group>"; };
-		BDE1B3992BE83AA8004103C3 /* AcceleratorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleratorData.swift; sourceTree = "<group>"; };
-		BDE1B39B2BE83AD5004103C3 /* GyroscopeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroscopeData.swift; sourceTree = "<group>"; };
-		BDE1B39D2BE83B14004103C3 /* DeviceMotionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMotionTest.swift; sourceTree = "<group>"; };
 		BD8D78352BDF3E6B00909914 /* TypeA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeA.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -260,7 +241,6 @@
 		BD8D78112BDF36A000909914 /* HATests */ = {
 			isa = PBXGroup;
 			children = (
-				BDE1B3902BE75670004103C3 /* TypeATest */,
 				BD8D78122BDF36A000909914 /* HATests.swift */,
 			);
 			path = HATests;
@@ -295,49 +275,9 @@
 		BD8D78342BDF3E4700909914 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				BDE1B3982BE83A62004103C3 /* View */,
-				BDE1B3972BE83A48004103C3 /* Model */,
-				BDFC50192BE83D1D00A875A2 /* ViewModel */,
-				BD8D78382BDF3ED800909914 /* TypeB.swift */,
 				BD8D78352BDF3E6B00909914 /* TypeA.swift */,
 			);
 			path = Test;
-			sourceTree = "<group>";
-		};
-		BDE1B3902BE75670004103C3 /* TypeATest */ = {
-			isa = PBXGroup;
-			children = (
-				BDE1B3912BE75683004103C3 /* AcceleratorTestCases.swift */,
-			);
-			path = TypeATest;
-			sourceTree = "<group>";
-		};
-		BDE1B3972BE83A48004103C3 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				BDE1B3992BE83AA8004103C3 /* AcceleratorData.swift */,
-				BDE1B39B2BE83AD5004103C3 /* GyroscopeData.swift */,
-				BDC20AA32BE8482000DFA5A7 /* MotionData.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		BDE1B3982BE83A62004103C3 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BD8D78352BDF3E6B00909914 /* TestingVC.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		BDFC50192BE83D1D00A875A2 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				BDE1B39D2BE83B14004103C3 /* DeviceMotionTest.swift */,
-				BDE1B3932BE7DFC8004103C3 /* GyroTest.swift */,
-				BDE1B3952BE83007004103C3 /* AcceleratorTest.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -476,17 +416,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDE1B3942BE7DFC8004103C3 /* GyroTest.swift in Sources */,
-				BDE1B39E2BE83B14004103C3 /* DeviceMotionTest.swift in Sources */,
-				BD8D78392BDF3ED800909914 /* TypeB.swift in Sources */,
-				BDE1B3962BE83007004103C3 /* AcceleratorTest.swift in Sources */,
-				BD8D78002BDF369F00909914 /* ViewController.swift in Sources */,
-				BD8D78362BDF3E6B00909914 /* TestingVC.swift in Sources */,
-				BD8D77FC2BDF369F00909914 /* AppDelegate.swift in Sources */,
-				BD8D77FE2BDF369F00909914 /* SceneDelegate.swift in Sources */,
-				BDE1B39A2BE83AA8004103C3 /* AcceleratorData.swift in Sources */,
-				BDE1B39C2BE83AD5004103C3 /* GyroscopeData.swift in Sources */,
-				BDC20AA42BE8482000DFA5A7 /* MotionData.swift in Sources */,
 				082D16962BE0AC2000200757 /* IntervalEnum.swift in Sources */,
 				08AD5A7D2BE0B43D0009C873 /* DefaultCoreMotionCentralHub.swift in Sources */,
 				08AD5A8E2BE0E6840009C873 /* ThreePointAxisProtocol.swift in Sources */,
@@ -517,9 +446,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD8D78132BDF36A000909914 /* HATests.swift in Sources */,
-				BDE1B3922BE75683004103C3 /* AcceleratorTestCases.swift in Sources */,
-				BD8D783A2BDF3ED800909914 /* TypeB.swift in Sources */,
-				BD8D78372BDF3E6B00909914 /* TestingVC.swift in Sources */,
 				BD8D78372BDF3E6B00909914 /* TypeA.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
