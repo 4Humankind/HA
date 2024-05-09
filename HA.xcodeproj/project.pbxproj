@@ -31,6 +31,8 @@
 		BD8D781D2BDF36A000909914 /* HAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D781C2BDF36A000909914 /* HAUITests.swift */; };
 		BD8D781F2BDF36A000909914 /* HAUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D781E2BDF36A000909914 /* HAUITestsLaunchTests.swift */; };
 		BD8D782D2BDF389D00909914 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D782C2BDF389D00909914 /* SnapKit */; };
+		BDC5BE822BECCEFC00017768 /* CameraTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC5BE812BECCEFC00017768 /* CameraTestVC.swift */; };
+		BDC5BE852BECE21300017768 /* CameraPreviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC5BE842BECE21300017768 /* CameraPreviewService.swift */; };
 		BDE1B3922BE75683004103C3 /* AcceleratorTestCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE1B3912BE75683004103C3 /* AcceleratorTestCases.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +81,8 @@
 		BD8D78182BDF36A000909914 /* HAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD8D781C2BDF36A000909914 /* HAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAUITests.swift; sourceTree = "<group>"; };
 		BD8D781E2BDF36A000909914 /* HAUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BDC5BE812BECCEFC00017768 /* CameraTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTestVC.swift; sourceTree = "<group>"; };
+		BDC5BE842BECE21300017768 /* CameraPreviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewService.swift; sourceTree = "<group>"; };
 		BDE1B3912BE75683004103C3 /* AcceleratorTestCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleratorTestCases.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +124,7 @@
 		08AAEDA92BE889A70045074F /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				BDC5BE832BECE20300017768 /* CameraPreviewSerview */,
 				08AAEDBD2BE9C7470045074F /* AudioRecorderService */,
 				08AAEDAA2BE889B00045074F /* MotionService */,
 			);
@@ -219,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				08AAEDC32BE9F2D30045074F /* AudioRecordTestVC.swift */,
+				BDC5BE812BECCEFC00017768 /* CameraTestVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -284,6 +290,14 @@
 				08AAEDAB2BE889C10045074F /* MotionService */,
 			);
 			path = Module;
+			sourceTree = "<group>";
+		};
+		BDC5BE832BECE20300017768 /* CameraPreviewSerview */ = {
+			isa = PBXGroup;
+			children = (
+				BDC5BE842BECE21300017768 /* CameraPreviewService.swift */,
+			);
+			path = CameraPreviewSerview;
 			sourceTree = "<group>";
 		};
 		BDE1B3902BE75670004103C3 /* TypeATest */ = {
@@ -431,6 +445,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08AAEDB22BE88C1A0045074F /* MotionServiceModuleProtocol.swift in Sources */,
+				BDC5BE822BECCEFC00017768 /* CameraTestVC.swift in Sources */,
 				BD8D78002BDF369F00909914 /* ViewController.swift in Sources */,
 				BD8D77FC2BDF369F00909914 /* AppDelegate.swift in Sources */,
 				BD8D77FE2BDF369F00909914 /* SceneDelegate.swift in Sources */,
@@ -443,6 +458,7 @@
 				08AAEDB52BE88F7B0045074F /* DFAccelermeterModule.swift in Sources */,
 				08AAEDC42BE9F2D30045074F /* AudioRecordTestVC.swift in Sources */,
 				BD8D78002BDF369F00909914 /* ViewController.swift in Sources */,
+				BDC5BE852BECE21300017768 /* CameraPreviewService.swift in Sources */,
 				08AAEDA52BE3C4920045074F /* MyCMMotionManager.swift in Sources */,
 				BD8D77FC2BDF369F00909914 /* AppDelegate.swift in Sources */,
 				08AAEDBF2BE9C7630045074F /* AudioRecorderService.swift in Sources */,
@@ -625,7 +641,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W5QTRMS954;
+				DEVELOPMENT_TEAM = 2U86LHQK8Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HA/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -657,7 +673,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W5QTRMS954;
+				DEVELOPMENT_TEAM = 2U86LHQK8Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HA/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
