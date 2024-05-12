@@ -13,7 +13,7 @@ class DFGyroModule: MotionServiceModuleProtocol {
     
     var moduleData: Observable<ThreePointAxisProtocol> = .init(Gyro(x: 0, y: 0, z: 0))
     
-    func startMotionUpdate(queue: OperationQueue, interval: IntervalEnum) {
+    func startMotionUpdate(queue: OperationQueue, interval: IntervalEnum, isShow: Bool) {
         
         if !motionManager.isGyroAvailable {
             print("Gyro is not Available")
@@ -31,6 +31,8 @@ class DFGyroModule: MotionServiceModuleProtocol {
                 return
             }
             moduleData.value = Gyro(x: gyro.x, y: gyro.y, z: gyro.z)
+            
+            if isShow { print(moduleData.value!) }
         }
     }
     

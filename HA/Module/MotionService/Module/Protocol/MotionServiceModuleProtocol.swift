@@ -13,7 +13,7 @@ protocol MotionServiceModuleProtocol {
     var motionManager: CMMotionManager { get set }
     var moduleData: Observable<ThreePointAxisProtocol> { get set }
     
-    func startMotionUpdate(queue: OperationQueue, interval: IntervalEnum)
+    func startMotionUpdate(queue: OperationQueue, interval: IntervalEnum, isShow: Bool)
     func stopMotionUpdate()
     func subscribe(notificationLimitValue: Double, subscribe: @escaping () -> Void)
 }

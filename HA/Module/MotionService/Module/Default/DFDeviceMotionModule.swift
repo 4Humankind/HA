@@ -13,7 +13,7 @@ class DFDeviceMotionModule: MotionServiceModuleProtocol {
     
     var moduleData: Observable<ThreePointAxisProtocol> = .init(DeviceMotion(x: 0, y: 0, z: 0))
     
-    func startMotionUpdate(queue: OperationQueue, interval: IntervalEnum) {
+    func startMotionUpdate(queue: OperationQueue, interval: IntervalEnum, isShow: Bool) {
         
         if !motionManager.isDeviceMotionAvailable {
             print("DeviceMotion is not Available")
@@ -31,6 +31,8 @@ class DFDeviceMotionModule: MotionServiceModuleProtocol {
                 return
             }
             moduleData.value = DeviceMotion(x: deviceMotion.x, y: deviceMotion.y, z: deviceMotion.z)
+            
+            if isShow { print(moduleData.value!) }
         }
     }
     

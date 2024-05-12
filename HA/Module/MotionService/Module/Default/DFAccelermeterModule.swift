@@ -13,7 +13,7 @@ class DFAccelermeterModule: MotionServiceModuleProtocol {
     
     var moduleData: Observable<ThreePointAxisProtocol> = .init(Acceleration(x: 0, y: 0, z: 0))
     
-    func startMotionUpdate(queue: OperationQueue, interval: IntervalEnum) {
+    func startMotionUpdate(queue: OperationQueue, interval: IntervalEnum, isShow: Bool) {
         
         if !motionManager.isAccelerometerAvailable {
             print("Accelerometer is not Available")
@@ -31,6 +31,8 @@ class DFAccelermeterModule: MotionServiceModuleProtocol {
                 return
             }
             moduleData.value = Acceleration(x: acceleration.x, y: acceleration.y, z: acceleration.z)
+            
+            if isShow { print(moduleData.value!) }
         }
     }
     

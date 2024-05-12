@@ -11,6 +11,7 @@
 		082D168C2BE0AB7D00200757 /* Gyro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D168B2BE0AB7D00200757 /* Gyro.swift */; };
 		082D168F2BE0AB9700200757 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D168E2BE0AB9700200757 /* Observable.swift */; };
 		082D16962BE0AC2000200757 /* IntervalEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D16952BE0AC2000200757 /* IntervalEnum.swift */; };
+		0850B4CF2BF0FEFE00AA5077 /* CoreMotionTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0850B4CE2BF0FEFE00AA5077 /* CoreMotionTestVC.swift */; };
 		08AAEDA52BE3C4920045074F /* MyCMMotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAEDA42BE3C4920045074F /* MyCMMotionManager.swift */; };
 		08AAEDB22BE88C1A0045074F /* MotionServiceModuleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAEDB12BE88C1A0045074F /* MotionServiceModuleProtocol.swift */; };
 		08AAEDB52BE88F7B0045074F /* DFAccelermeterModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAEDB42BE88F7B0045074F /* DFAccelermeterModule.swift */; };
@@ -58,6 +59,7 @@
 		082D168B2BE0AB7D00200757 /* Gyro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gyro.swift; sourceTree = "<group>"; };
 		082D168E2BE0AB9700200757 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		082D16952BE0AC2000200757 /* IntervalEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalEnum.swift; sourceTree = "<group>"; };
+		0850B4CE2BF0FEFE00AA5077 /* CoreMotionTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionTestVC.swift; sourceTree = "<group>"; };
 		08AAEDA42BE3C4920045074F /* MyCMMotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCMMotionManager.swift; sourceTree = "<group>"; };
 		08AAEDB12BE88C1A0045074F /* MotionServiceModuleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionServiceModuleProtocol.swift; sourceTree = "<group>"; };
 		08AAEDB42BE88F7B0045074F /* DFAccelermeterModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFAccelermeterModule.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			children = (
 				08AAEDC32BE9F2D30045074F /* AudioRecordTestVC.swift */,
 				BDC5BE812BECCEFC00017768 /* CameraTestVC.swift */,
+				0850B4CE2BF0FEFE00AA5077 /* CoreMotionTestVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				BD096DD42BEE5FFF00281624 /* CameraPreviewService.swift in Sources */,
 				08AAEDA52BE3C4920045074F /* MyCMMotionManager.swift in Sources */,
 				BD8D77FC2BDF369F00909914 /* AppDelegate.swift in Sources */,
+				0850B4CF2BF0FEFE00AA5077 /* CoreMotionTestVC.swift in Sources */,
 				08AAEDBF2BE9C7630045074F /* AudioRecorderService.swift in Sources */,
 				08AAEDB72BE89A0C0045074F /* DFGyroModule.swift in Sources */,
 				BD8D77FE2BDF369F00909914 /* SceneDelegate.swift in Sources */,
@@ -641,7 +645,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2U86LHQK8Q;
+				DEVELOPMENT_TEAM = W5QTRMS954;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HA/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -673,7 +677,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2U86LHQK8Q;
+				DEVELOPMENT_TEAM = W5QTRMS954;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HA/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

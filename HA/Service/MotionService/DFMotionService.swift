@@ -27,8 +27,8 @@ class DFMotionService {
         self.deviceMotionModule = deviceMotionModule
     }
     
-    func startUpdateModule(module: MotionModuleEnum, queue: OperationQueue = .main, interval: IntervalEnum = .hz60) {
-        fetchModule(module: module).startMotionUpdate(queue: queue, interval: interval)
+    func startUpdateModule(module: MotionModuleEnum, queue: OperationQueue = .main, interval: IntervalEnum = .hz60, isShow: Bool = false) {
+        fetchModule(module: module).startMotionUpdate(queue: queue, interval: interval, isShow: isShow)
     }
     
     func stopUpdateModule(module: MotionModuleEnum) {
@@ -48,9 +48,5 @@ class DFMotionService {
         case .deviceMotion:
             return self.deviceMotionModule
         }
-    }
-    
-    func isShowDisplay(isShow: Bool) {
-        accelermeterModule.motionManager.showsDeviceMovementDisplay = isShow
     }
 }
