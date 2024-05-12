@@ -14,7 +14,6 @@ class CoreMotionTestVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        service.isShowDisplay(isShow: true)
         service.startUpdateModule(module: .accelermeter, isShow: true)
         service.startUpdateModule(module: .deviceMotion, isShow: true)
         service.startUpdateModule(module: .gyro, isShow: true)
