@@ -13,7 +13,11 @@ class AudioRecorderService: NSObject {
     // MARK: - Properties
     private var recordingSession: AVAudioSession!
     private var audioRecorder: AVAudioRecorder!
-    private var isRecording: Observable<Bool> = Observable(false)
+    private var audioPlayer: AVAudioPlayer!
+    
+    // MARK: - Observer Properties
+    private var isRecording = Observable(false)
+    private var isPlaying = Observable(false)
     
     override init() {
         super.init()
@@ -31,6 +35,7 @@ private extension AudioRecorderService {
             print("AudioRecorderService Active Success")
         } catch {
             print("AudioRecorderService Active Fail")
+            isRecording.value = false
         }
     }
     
@@ -47,14 +52,32 @@ private extension AudioRecorderService {
         let path = getDocumentsDirectory().appendingPathComponent("recording\(time).m4a")
         return path as URL
     }
+    
+    func preparePlayer(url: URL) {
+        if audioPlayer == nil {
+            var error: NSError?
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: url)
+            } catch let error1 as NSError {
+                error = error1
+                audioPlayer = nil
+            }
+
+            if let err = error {
+                print("AVAudioPlayer error: \(err.localizedDescription)")
+            } else {
+                audioPlayer.prepareToPlay()
+                audioPlayer.volume = 10.0
+            }
+        }
+    }
 }
 
-// MARK: - Methods
+// MARK: - related record
 extension AudioRecorderService {
     
     func startRecording() {
         
-        print(#function)
         let audioFilename = getFileURL()
         
         let settings = [
@@ -67,19 +90,19 @@ extension AudioRecorderService {
         do {
             audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
             audioRecorder.delegate = self
-            isRecording.value = true
             audioRecorder.record()
+            isRecording.value = true
         } catch {
             isRecording.value = false
             print("Recording Start Fail")
         }
+        
     }
     
     func stopRecording() {
-        print(#function)
         audioRecorder.stop()
-        audioRecorder = nil
         isRecording.value = false
+        audioRecorder = nil
     }
     
     func getAllRecordingsURLs() -> [URL] {
@@ -100,11 +123,42 @@ extension AudioRecorderService {
         
         return recordings
     }
+}
+
+// MARK: - related play
+extension AudioRecorderService {
     
+    func playAudio(url: URL) {
+        preparePlayer(url: url)
+        audioPlayer.delegate = self
+        
+        if audioPlayer != nil {
+            isPlaying.value = true
+            audioPlayer.play()
+        }
+    }
+    
+    func pauseAudio() {
+        isPlaying.value = false
+        audioPlayer.pause()
+    }
+}
+
+// MARK: - subscribe
+extension AudioRecorderService {
     func subscribeIsRecording(subscribe: @escaping (Bool) -> Void) {
         isRecording.bind { isRecording in
-            guard let isRecording = isRecording else { return }
-            subscribe(isRecording)
+            if let isRecording = isRecording {
+                subscribe(isRecording)
+            }
+        }
+    }
+    
+    func subscribeIsPlaying(subscribe: @escaping (Bool) -> Void) {
+        isPlaying.bind { isPlaying in
+            if let isPlaying = isPlaying {
+                subscribe(isPlaying)
+            }
         }
     }
 }
@@ -118,5 +172,13 @@ extension AudioRecorderService: AVAudioRecorderDelegate {
     
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
         print("Error while recording audio \(error!.localizedDescription)")
+    }
+}
+
+extension AudioRecorderService: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("FinishPlaying")
+        isPlaying.value = false
+        audioPlayer = nil
     }
 }

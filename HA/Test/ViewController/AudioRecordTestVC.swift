@@ -16,15 +16,37 @@ class AudioRecordTestVC: UIViewController, AVAudioRecorderDelegate, AVAudioPlaye
     var playButton = UIButton()
     
     var recordService = AudioRecorderService()
+    var isRecording = false
+    var isPlaying = false
     
     override func viewDidLoad() {
         setUpUI()
+        
+        recordService.subscribeIsRecording { [weak self] isRecording in
+            self?.isRecording = isRecording
+            if isRecording {
+                self?.recordButton.setImage(UIImage(systemName: "stop.fill"), for: .normal)
+            } else {
+                self?.recordButton.setImage(UIImage(systemName: "record.circle"), for: .normal)
+                
+            }
+        }
+        
+        recordService.subscribeIsPlaying { [weak self] isPlaying in
+            self?.isPlaying = isPlaying
+            if isPlaying {
+                self?.playButton.setImage(UIImage(systemName: "pause"), for: .normal)
+            } else {
+                self?.playButton.setImage(UIImage(systemName: "play"), for: .normal)
+            }
+        }
     }
     
     func setUpUI() {
         view.backgroundColor = .systemBackground
         recordButton.setImage(UIImage(systemName: "record.circle"), for: .normal)
-        playButton.setImage(UIImage(systemName: "play"), for: .normal)
+        recordButton.backgroundColor = .green
+        playButton.backgroundColor = .red
         view.addSubview(recordButton)
         view.addSubview(playButton)
         
@@ -45,11 +67,21 @@ class AudioRecordTestVC: UIViewController, AVAudioRecorderDelegate, AVAudioPlaye
     
     
     @objc func recordAudioButtonTapped(_ sender: UIButton) {
-        recordService.startRecording()
+        if isRecording {
+            recordService.stopRecording()
+        } else {
+            recordService.startRecording()
+        }
     }
     
     @objc func playAudioButtonTapped(_ sender: UIButton) {
-        recordService.stopRecording()
+        if isPlaying {
+            recordService.pauseAudio()
+        } else {
+            print(recordService.getAllRecordingsURLs())
+            guard let url = recordService.getAllRecordingsURLs().first else { return }
+            recordService.playAudio(url: url)
+        }
     }
 
 }
