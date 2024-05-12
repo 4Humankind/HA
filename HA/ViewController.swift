@@ -19,7 +19,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var tableView = UITableView()
     
     var vcData: [VCData] = [
-        VCData(title: "AudioRecordTest", vc: AudioRecordTestVC())
+        VCData(title: "AudioRecordTest", vc: AudioRecordTestVC()),
+        VCData(title: "CameraRecordTest", vc: CameraTestVC())
     ]
     
     
