@@ -53,11 +53,23 @@ class CameraTestVC: UIViewController {
     }
     
     private func checkCameraPermission() {
-        AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
-            guard granted else { return }
-            DispatchQueue.main.async {
-                self?.configureCamera()
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized:
+            AVCaptureDevice.requestAccess(for: .video) { granted in
+                if granted {
+                    DispatchQueue.main.async {
+                        self.configureCamera()
+                    }
+                }
             }
+        case .denied:
+            print("카메라 사용이 허락되지 않았습니다.")
+        case .notDetermined:
+            print("허용이 눌리지 않았습니다.")
+        case .restricted:
+            print("카메라 사용이 불가능합니다.")
+        default:
+            print("오류 발생")
         }
     }
     
@@ -76,9 +88,8 @@ class CameraTestVC: UIViewController {
             }
             
             let previewLayer = AVCaptureVideoPreviewLayer(session: session)
-            previewLayer.videoGravity = .resizeAspectFill
-            
             view.layer.addSublayer(previewLayer)
+            previewLayer.videoGravity = .resizeAspectFill
             previewLayer.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
             
             session.startRunning()
