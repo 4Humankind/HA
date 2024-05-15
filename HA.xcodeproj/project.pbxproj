@@ -12,6 +12,7 @@
 		082D168F2BE0AB9700200757 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D168E2BE0AB9700200757 /* Observable.swift */; };
 		082D16962BE0AC2000200757 /* IntervalEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D16952BE0AC2000200757 /* IntervalEnum.swift */; };
 		0850B4CF2BF0FEFE00AA5077 /* CoreMotionTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0850B4CE2BF0FEFE00AA5077 /* CoreMotionTestVC.swift */; };
+		0850B4D22BF4BB7E00AA5077 /* DelayRunModuleImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0850B4D12BF4BB7E00AA5077 /* DelayRunModuleImpl.swift */; };
 		08AAEDA52BE3C4920045074F /* MyCMMotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAEDA42BE3C4920045074F /* MyCMMotionManager.swift */; };
 		08AAEDB22BE88C1A0045074F /* MotionServiceModuleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAEDB12BE88C1A0045074F /* MotionServiceModuleProtocol.swift */; };
 		08AAEDB52BE88F7B0045074F /* DFAccelermeterModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAEDB42BE88F7B0045074F /* DFAccelermeterModule.swift */; };
@@ -60,6 +61,7 @@
 		082D168E2BE0AB9700200757 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		082D16952BE0AC2000200757 /* IntervalEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalEnum.swift; sourceTree = "<group>"; };
 		0850B4CE2BF0FEFE00AA5077 /* CoreMotionTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionTestVC.swift; sourceTree = "<group>"; };
+		0850B4D12BF4BB7E00AA5077 /* DelayRunModuleImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayRunModuleImpl.swift; sourceTree = "<group>"; };
 		08AAEDA42BE3C4920045074F /* MyCMMotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCMMotionManager.swift; sourceTree = "<group>"; };
 		08AAEDB12BE88C1A0045074F /* MotionServiceModuleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionServiceModuleProtocol.swift; sourceTree = "<group>"; };
 		08AAEDB42BE88F7B0045074F /* DFAccelermeterModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFAccelermeterModule.swift; sourceTree = "<group>"; };
@@ -119,6 +121,14 @@
 			children = (
 				082D168E2BE0AB9700200757 /* Observable.swift */,
 				08AAEDA42BE3C4920045074F /* MyCMMotionManager.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		0850B4D02BF4BB7200AA5077 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0850B4D12BF4BB7E00AA5077 /* DelayRunModuleImpl.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -298,6 +308,7 @@
 		BD8D782E2BDF3D9400909914 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				0850B4D02BF4BB7200AA5077 /* Common */,
 				08AAEDAB2BE889C10045074F /* MotionService */,
 			);
 			path = Module;
@@ -453,6 +464,7 @@
 				BD8D77FC2BDF369F00909914 /* AppDelegate.swift in Sources */,
 				BD8D77FE2BDF369F00909914 /* SceneDelegate.swift in Sources */,
 				082D16962BE0AC2000200757 /* IntervalEnum.swift in Sources */,
+				0850B4D22BF4BB7E00AA5077 /* DelayRunModuleImpl.swift in Sources */,
 				08AD5A8E2BE0E6840009C873 /* ThreePointAxisProtocol.swift in Sources */,
 				082D168F2BE0AB9700200757 /* Observable.swift in Sources */,
 				08AAEDB92BE89AA00045074F /* DFDeviceMotionModule.swift in Sources */,

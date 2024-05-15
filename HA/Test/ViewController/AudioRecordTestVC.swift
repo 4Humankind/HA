@@ -16,6 +16,7 @@ class AudioRecordTestVC: UIViewController, AVAudioRecorderDelegate, AVAudioPlaye
     var playButton = UIButton()
     
     var recordService = AudioRecorderService()
+    var timer = DelayRunModuleImpl()
     var isRecording = false
     var isPlaying = false
     
@@ -72,10 +73,14 @@ class AudioRecordTestVC: UIViewController, AVAudioRecorderDelegate, AVAudioPlaye
 //        } else {
 //            recordService.startRecording()
 //        }
-        recordService.startTimer()
+//        recordService.startTimer()
+        timer.tryRun {
+            print("run~!")
+        }
     }
     
     @objc func playAudioButtonTapped(_ sender: UIButton) {
+        timer.cancelRun()
 //        if isPlaying {
 //            recordService.pauseAudio()
 //        } else {
