@@ -22,24 +22,24 @@ class AudioRecordTestVC: UIViewController, AVAudioRecorderDelegate, AVAudioPlaye
     override func viewDidLoad() {
         setUpUI()
         
-        recordService.subscribeIsRecording { [weak self] isRecording in
-            self?.isRecording = isRecording
-            if isRecording {
-                self?.recordButton.setImage(UIImage(systemName: "stop.fill"), for: .normal)
-            } else {
-                self?.recordButton.setImage(UIImage(systemName: "record.circle"), for: .normal)
-                
-            }
-        }
-        
-        recordService.subscribeIsPlaying { [weak self] isPlaying in
-            self?.isPlaying = isPlaying
-            if isPlaying {
-                self?.playButton.setImage(UIImage(systemName: "pause"), for: .normal)
-            } else {
-                self?.playButton.setImage(UIImage(systemName: "play"), for: .normal)
-            }
-        }
+//        recordService.subscribeIsRecording { [weak self] isRecording in
+//            self?.isRecording = isRecording
+//            if isRecording {
+//                self?.recordButton.setImage(UIImage(systemName: "stop.fill"), for: .normal)
+//            } else {
+//                self?.recordButton.setImage(UIImage(systemName: "record.circle"), for: .normal)
+//                
+//            }
+//        }
+//        
+//        recordService.subscribeIsPlaying { [weak self] isPlaying in
+//            self?.isPlaying = isPlaying
+//            if isPlaying {
+//                self?.playButton.setImage(UIImage(systemName: "pause"), for: .normal)
+//            } else {
+//                self?.playButton.setImage(UIImage(systemName: "play"), for: .normal)
+//            }
+//        }
     }
     
     func setUpUI() {
@@ -67,21 +67,22 @@ class AudioRecordTestVC: UIViewController, AVAudioRecorderDelegate, AVAudioPlaye
     
     
     @objc func recordAudioButtonTapped(_ sender: UIButton) {
-        if isRecording {
-            recordService.stopRecording()
-        } else {
-            recordService.startRecording()
-        }
+//        if isRecording {
+//            recordService.stopRecording()
+//        } else {
+//            recordService.startRecording()
+//        }
+        recordService.startTimer()
     }
     
     @objc func playAudioButtonTapped(_ sender: UIButton) {
-        if isPlaying {
-            recordService.pauseAudio()
-        } else {
-            print(recordService.getAllRecordingsURLs())
-            guard let url = recordService.getAllRecordingsURLs().first else { return }
-            recordService.playAudio(url: url)
-        }
+//        if isPlaying {
+//            recordService.pauseAudio()
+//        } else {
+//            print(recordService.fetchAllRecordingsURLs())
+//            guard let url = recordService.fetchAllRecordingsURLs().first else { return }
+//            recordService.playAudio(url: url)
+//        }
     }
 
 }

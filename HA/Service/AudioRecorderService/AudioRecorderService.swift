@@ -39,17 +39,17 @@ private extension AudioRecorderService {
         }
     }
     
-    func getDocumentsDirectory() -> URL {
+    func fetchDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
     
-    func getFileURL() -> URL {
+    func fetchFileURL() -> URL {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateFormatter.locale = Locale(identifier: "ko_KR")
         let time = dateFormatter.string(from: Date())
-        let path = getDocumentsDirectory().appendingPathComponent("recording\(time).m4a")
+        let path = fetchDocumentsDirectory().appendingPathComponent("recording\(time).m4a")
         return path as URL
     }
     
@@ -78,7 +78,7 @@ extension AudioRecorderService {
     
     func startRecording() {
         
-        let audioFilename = getFileURL()
+        let audioFilename = fetchFileURL()
         
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
@@ -105,8 +105,8 @@ extension AudioRecorderService {
         audioRecorder = nil
     }
     
-    func getAllRecordingsURLs() -> [URL] {
-        let documentsDirectory = getDocumentsDirectory()
+    func fetchAllRecordingsURLs() -> [URL] {
+        let documentsDirectory = fetchDocumentsDirectory()
         var recordings: [URL] = []
         
         do {
