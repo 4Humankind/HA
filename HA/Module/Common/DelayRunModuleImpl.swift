@@ -7,12 +7,6 @@
 
 import Foundation
 
-
-protocol DelayRunModule {
-    func startDelayedAction(delay: Int, completion: @escaping () -> Void)
-    func cancelDelayedAction()
-}
-
 final class DelayRunModuleImpl: DelayRunModule {
     
     private var timer: DispatchSourceTimer?

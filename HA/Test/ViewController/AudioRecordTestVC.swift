@@ -15,32 +15,11 @@ class AudioRecordTestVC: UIViewController, AVAudioRecorderDelegate, AVAudioPlaye
     var recordButton = UIButton()
     var playButton = UIButton()
     
-    var recordService = AudioRecorderService()
-    var timer = DelayRunModuleImpl()
-    var isRecording = false
-    var isPlaying = false
+    var audioService = AudioService()
+    var player = AudioPlayerModuleImpl()
     
     override func viewDidLoad() {
         setUpUI()
-        
-//        recordService.subscribeIsRecording { [weak self] isRecording in
-//            self?.isRecording = isRecording
-//            if isRecording {
-//                self?.recordButton.setImage(UIImage(systemName: "stop.fill"), for: .normal)
-//            } else {
-//                self?.recordButton.setImage(UIImage(systemName: "record.circle"), for: .normal)
-//                
-//            }
-//        }
-//        
-//        recordService.subscribeIsPlaying { [weak self] isPlaying in
-//            self?.isPlaying = isPlaying
-//            if isPlaying {
-//                self?.playButton.setImage(UIImage(systemName: "pause"), for: .normal)
-//            } else {
-//                self?.playButton.setImage(UIImage(systemName: "play"), for: .normal)
-//            }
-//        }
     }
     
     func setUpUI() {
@@ -68,26 +47,13 @@ class AudioRecordTestVC: UIViewController, AVAudioRecorderDelegate, AVAudioPlaye
     
     
     @objc func recordAudioButtonTapped(_ sender: UIButton) {
-//        if isRecording {
-//            recordService.stopRecording()
-//        } else {
-//            recordService.startRecording()
-//        }
-//        recordService.startTimer()
-        timer.tryRun {
-            print("run~!")
-        }
+        audioService.delayedExecutionRecording(delay: 5)
     }
     
     @objc func playAudioButtonTapped(_ sender: UIButton) {
-        timer.cancelRun()
-//        if isPlaying {
-//            recordService.pauseAudio()
-//        } else {
-//            print(recordService.fetchAllRecordingsURLs())
-//            guard let url = recordService.fetchAllRecordingsURLs().first else { return }
-//            recordService.playAudio(url: url)
-//        }
+        let audios = audioService.fetchAllRecordingsURLs()
+        guard let audio = audios.last else { return }
+        audioService.playAudio(from: audio)
     }
 
 }
