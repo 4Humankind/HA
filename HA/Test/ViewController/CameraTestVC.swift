@@ -12,9 +12,7 @@ import SnapKit
 class CameraTestVC: UIViewController {
     private var cameraButton = UIButton()
     private var videoButton = UIButton()
-    private var imageOutput = AVCapturePhotoOutput()
-    private var captureSession: AVCaptureSession?
-    private var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
+    private var cameraPreviewLayer: CameraPreview?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,55 +54,30 @@ class CameraTestVC: UIViewController {
         AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
             guard granted else { return }
             DispatchQueue.main.async {
-                self?.configureCamera()
+                self?.setupCameraPreview()
             }
         }
     }
     
-    private func configureCamera() {
-        let session = AVCaptureSession()
-        guard let device = AVCaptureDevice.default(for: .video) else { return }
-        
-        do {
-            let input = try AVCaptureDeviceInput(device: device)
-            if session.canAddInput(input) {
-                session.addInput(input)
-            }
-            
-            if session.canAddOutput(imageOutput) {
-                session.addOutput(imageOutput)
-            }
-            
-            let previewLayer = AVCaptureVideoPreviewLayer(session: session)
-            previewLayer.videoGravity = .resizeAspectFill
-            
-            view.layer.addSublayer(previewLayer)
-            previewLayer.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
-            
-            session.startRunning()
-            self.captureSession = session
-            self.cameraPreviewLayer = previewLayer
-        } catch {
-            print("Error configuring camera:", error.localizedDescription)
+    private func setupCameraPreview() {
+        let preview = CameraPreview()
+        view.addSubview(preview)
+        preview.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(50)
+            make.leading.trailing.equalTo(view)
+            make.height.equalTo(300)
         }
+        self.cameraPreviewLayer = preview
     }
     
     @objc private func cameraButtonTapped() {
         print("Camera button tapped")
-        capturePhoto()
+        // previewLayer를 활용해서 화면 캡쳐 진행
+        cameraPreviewLayer?.capturePhoto(delegate: self)
     }
     
     @objc private func videoButtonTapped() {
         print("Video button tapped")
-    }
-    
-    private func capturePhoto() {
-        guard let captureSession = captureSession else {
-            print("Capture session is not configured")
-            return
-        }
-        
-        imageOutput.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
     }
 }
 
@@ -116,7 +89,7 @@ extension CameraTestVC: AVCapturePhotoCaptureDelegate {
         }
         
         DispatchQueue.main.async {
-            self.captureSession?.stopRunning()
+            self.cameraPreviewLayer?.stopRunning()
             let imageView = UIImageView(image: image)
             imageView.contentMode = .scaleAspectFill
             imageView.frame = self.view.bounds
