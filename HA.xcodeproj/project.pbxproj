@@ -32,10 +32,10 @@
 		BD8D78132BDF36A000909914 /* HATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D78122BDF36A000909914 /* HATests.swift */; };
 		BD8D781D2BDF36A000909914 /* HAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D781C2BDF36A000909914 /* HAUITests.swift */; };
 		BD8D781F2BDF36A000909914 /* HAUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D781E2BDF36A000909914 /* HAUITestsLaunchTests.swift */; };
-		BD8D782D2BDF389D00909914 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D782C2BDF389D00909914 /* SnapKit */; };
 		BDC5BE822BECCEFC00017768 /* CameraTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC5BE812BECCEFC00017768 /* CameraTestVC.swift */; };
 		BDE1B3922BE75683004103C3 /* AcceleratorTestCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE1B3912BE75683004103C3 /* AcceleratorTestCases.swift */; };
-		BDE65CFF2BF9DDDC00F5FAE8 /* CoreMotionSecondTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE65CFE2BF9DDDC00F5FAE8 /* CoreMotionSecondTestVC.swift */; };
+		BDE65CFF2BF9DDDC00F5FAE8 /* VideoRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE65CFE2BF9DDDC00F5FAE8 /* VideoRecording.swift */; };
+		BDE65D092BFBF55100F5FAE8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BDE65D082BFBF55100F5FAE8 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,7 +87,7 @@
 		BD8D781E2BDF36A000909914 /* HAUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BDC5BE812BECCEFC00017768 /* CameraTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTestVC.swift; sourceTree = "<group>"; };
 		BDE1B3912BE75683004103C3 /* AcceleratorTestCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceleratorTestCases.swift; sourceTree = "<group>"; };
-		BDE65CFE2BF9DDDC00F5FAE8 /* CoreMotionSecondTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionSecondTestVC.swift; sourceTree = "<group>"; };
+		BDE65CFE2BF9DDDC00F5FAE8 /* VideoRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecording.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD8D782D2BDF389D00909914 /* SnapKit in Frameworks */,
+				BDE65D092BFBF55100F5FAE8 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +184,7 @@
 		08AAEDAF2BE88BC90045074F /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				BDE65D072BFB9ABE00F5FAE8 /* VideoRecording */,
 				08AAEDB32BE88F160045074F /* Default */,
 				08AAEDB02BE88BFC0045074F /* Protocol */,
 			);
@@ -230,7 +231,6 @@
 				08AAEDC32BE9F2D30045074F /* AudioRecordTestVC.swift */,
 				BDC5BE812BECCEFC00017768 /* CameraTestVC.swift */,
 				0850B4CE2BF0FEFE00AA5077 /* CoreMotionTestVC.swift */,
-				BDE65CFE2BF9DDDC00F5FAE8 /* CoreMotionSecondTestVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -314,6 +314,14 @@
 			path = TypeATest;
 			sourceTree = "<group>";
 		};
+		BDE65D072BFB9ABE00F5FAE8 /* VideoRecording */ = {
+			isa = PBXGroup;
+			children = (
+				BDE65CFE2BF9DDDC00F5FAE8 /* VideoRecording.swift */,
+			);
+			path = VideoRecording;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -331,7 +339,7 @@
 			);
 			name = HA;
 			packageProductDependencies = (
-				BD8D782C2BDF389D00909914 /* SnapKit */,
+				BDE65D082BFBF55100F5FAE8 /* SnapKit */,
 			);
 			productName = HA;
 			productReference = BD8D77F82BDF369F00909914 /* HA.app */;
@@ -467,7 +475,7 @@
 				BD096DD42BEE5FFF00281624 /* CameraPreviewService.swift in Sources */,
 				08AAEDA52BE3C4920045074F /* MyCMMotionManager.swift in Sources */,
 				BD8D77FC2BDF369F00909914 /* AppDelegate.swift in Sources */,
-				BDE65CFF2BF9DDDC00F5FAE8 /* CoreMotionSecondTestVC.swift in Sources */,
+				BDE65CFF2BF9DDDC00F5FAE8 /* VideoRecording.swift in Sources */,
 				0850B4CF2BF0FEFE00AA5077 /* CoreMotionTestVC.swift in Sources */,
 				08AAEDBF2BE9C7630045074F /* AudioRecorderService.swift in Sources */,
 				08AAEDB72BE89A0C0045074F /* DFGyroModule.swift in Sources */,
@@ -835,7 +843,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BD8D782C2BDF389D00909914 /* SnapKit */ = {
+		BDE65D082BFBF55100F5FAE8 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BD8D782B2BDF389D00909914 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;

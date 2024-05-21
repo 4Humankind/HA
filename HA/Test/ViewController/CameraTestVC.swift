@@ -13,6 +13,7 @@ class CameraTestVC: UIViewController {
     private var cameraButton = UIButton()
     private var videoButton = UIButton()
     private var cameraPreviewLayer: CameraPreview?
+    private var isRecording: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +79,13 @@ class CameraTestVC: UIViewController {
     
     @objc private func videoButtonTapped() {
         print("Video button tapped")
+        if isRecording {
+            isRecording = false
+            cameraPreviewLayer?.stopRecording()
+        } else {
+            isRecording = true
+            cameraPreviewLayer?.startRecording(delegate: self)
+        }
     }
 }
 
@@ -94,6 +102,16 @@ extension CameraTestVC: AVCapturePhotoCaptureDelegate {
             imageView.contentMode = .scaleAspectFill
             imageView.frame = self.view.bounds
             self.view.addSubview(imageView)
+        }
+    }
+}
+
+extension CameraTestVC: AVCaptureFileOutputRecordingDelegate {
+    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: (any Error)?) {
+        if let error = error {
+            print("Error recording video")
+        } else {
+            UISaveVideoAtPathToSavedPhotosAlbum(outputFileURL.path, nil, nil, nil)
         }
     }
 }
