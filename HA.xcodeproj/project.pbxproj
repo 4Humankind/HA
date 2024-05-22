@@ -12,13 +12,19 @@
 		082D168F2BE0AB9700200757 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D168E2BE0AB9700200757 /* Observable.swift */; };
 		082D16962BE0AC2000200757 /* IntervalEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D16952BE0AC2000200757 /* IntervalEnum.swift */; };
 		0850B4CF2BF0FEFE00AA5077 /* CoreMotionTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0850B4CE2BF0FEFE00AA5077 /* CoreMotionTestVC.swift */; };
+		0850B4D22BF4BB7E00AA5077 /* DelayRunModuleImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0850B4D12BF4BB7E00AA5077 /* DelayRunModuleImpl.swift */; };
+		0850B4D52BF4C75600AA5077 /* AudioRecorderModuleImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0850B4D42BF4C75600AA5077 /* AudioRecorderModuleImpl.swift */; };
+		0850B4D72BF4C77000AA5077 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0850B4D62BF4C77000AA5077 /* AudioService.swift */; };
+		0850B4D92BF4C7F500AA5077 /* AudioPlayerModuleImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0850B4D82BF4C7F500AA5077 /* AudioPlayerModuleImpl.swift */; };
+		0850B4DD2BF4CC2000AA5077 /* AudioRecorderModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0850B4DC2BF4CC2000AA5077 /* AudioRecorderModule.swift */; };
+		0850B4DF2BF4CC2E00AA5077 /* AudioPlayerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0850B4DE2BF4CC2E00AA5077 /* AudioPlayerModule.swift */; };
+		0850B4E32BF4CC5700AA5077 /* DelayRunModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0850B4E22BF4CC5700AA5077 /* DelayRunModule.swift */; };
 		08AAEDA52BE3C4920045074F /* MyCMMotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAEDA42BE3C4920045074F /* MyCMMotionManager.swift */; };
 		08AAEDB22BE88C1A0045074F /* MotionServiceModuleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAEDB12BE88C1A0045074F /* MotionServiceModuleProtocol.swift */; };
 		08AAEDB52BE88F7B0045074F /* DFAccelermeterModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAEDB42BE88F7B0045074F /* DFAccelermeterModule.swift */; };
 		08AAEDB72BE89A0C0045074F /* DFGyroModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAEDB62BE89A0C0045074F /* DFGyroModule.swift */; };
 		08AAEDB92BE89AA00045074F /* DFDeviceMotionModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAEDB82BE89AA00045074F /* DFDeviceMotionModule.swift */; };
 		08AAEDBB2BE89B2C0045074F /* DFMotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAEDBA2BE89B2C0045074F /* DFMotionService.swift */; };
-		08AAEDBF2BE9C7630045074F /* AudioRecorderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAEDBE2BE9C7630045074F /* AudioRecorderService.swift */; };
 		08AAEDC42BE9F2D30045074F /* AudioRecordTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAEDC32BE9F2D30045074F /* AudioRecordTestVC.swift */; };
 		08AD5A802BE0B68B0009C873 /* DeviceMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD5A7F2BE0B68B0009C873 /* DeviceMotion.swift */; };
 		08AD5A832BE0B7AF0009C873 /* Magnetism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD5A822BE0B7AF0009C873 /* Magnetism.swift */; };
@@ -61,13 +67,19 @@
 		082D168E2BE0AB9700200757 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		082D16952BE0AC2000200757 /* IntervalEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalEnum.swift; sourceTree = "<group>"; };
 		0850B4CE2BF0FEFE00AA5077 /* CoreMotionTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionTestVC.swift; sourceTree = "<group>"; };
+		0850B4D12BF4BB7E00AA5077 /* DelayRunModuleImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayRunModuleImpl.swift; sourceTree = "<group>"; };
+		0850B4D42BF4C75600AA5077 /* AudioRecorderModuleImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderModuleImpl.swift; sourceTree = "<group>"; };
+		0850B4D62BF4C77000AA5077 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
+		0850B4D82BF4C7F500AA5077 /* AudioPlayerModuleImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerModuleImpl.swift; sourceTree = "<group>"; };
+		0850B4DC2BF4CC2000AA5077 /* AudioRecorderModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderModule.swift; sourceTree = "<group>"; };
+		0850B4DE2BF4CC2E00AA5077 /* AudioPlayerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerModule.swift; sourceTree = "<group>"; };
+		0850B4E22BF4CC5700AA5077 /* DelayRunModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayRunModule.swift; sourceTree = "<group>"; };
 		08AAEDA42BE3C4920045074F /* MyCMMotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCMMotionManager.swift; sourceTree = "<group>"; };
 		08AAEDB12BE88C1A0045074F /* MotionServiceModuleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionServiceModuleProtocol.swift; sourceTree = "<group>"; };
 		08AAEDB42BE88F7B0045074F /* DFAccelermeterModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFAccelermeterModule.swift; sourceTree = "<group>"; };
 		08AAEDB62BE89A0C0045074F /* DFGyroModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFGyroModule.swift; sourceTree = "<group>"; };
 		08AAEDB82BE89AA00045074F /* DFDeviceMotionModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFDeviceMotionModule.swift; sourceTree = "<group>"; };
 		08AAEDBA2BE89B2C0045074F /* DFMotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFMotionService.swift; sourceTree = "<group>"; };
-		08AAEDBE2BE9C7630045074F /* AudioRecorderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderService.swift; sourceTree = "<group>"; };
 		08AAEDC32BE9F2D30045074F /* AudioRecordTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordTestVC.swift; sourceTree = "<group>"; };
 		08AD5A7F2BE0B68B0009C873 /* DeviceMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMotion.swift; sourceTree = "<group>"; };
 		08AD5A822BE0B7AF0009C873 /* Magnetism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Magnetism.swift; sourceTree = "<group>"; };
@@ -125,11 +137,63 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		0850B4D02BF4BB7200AA5077 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0850B4E12BF4CC4A00AA5077 /* Interfaces */,
+				0850B4E02BF4CC4300AA5077 /* Impl */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		0850B4D32BF4C72100AA5077 /* AudioService */ = {
+			isa = PBXGroup;
+			children = (
+				0850B4DB2BF4CBC200AA5077 /* Impl */,
+				0850B4DA2BF4CB8600AA5077 /* Interfaces */,
+			);
+			path = AudioService;
+			sourceTree = "<group>";
+		};
+		0850B4DA2BF4CB8600AA5077 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				0850B4DC2BF4CC2000AA5077 /* AudioRecorderModule.swift */,
+				0850B4DE2BF4CC2E00AA5077 /* AudioPlayerModule.swift */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		0850B4DB2BF4CBC200AA5077 /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				0850B4D42BF4C75600AA5077 /* AudioRecorderModuleImpl.swift */,
+				0850B4D82BF4C7F500AA5077 /* AudioPlayerModuleImpl.swift */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
+		0850B4E02BF4CC4300AA5077 /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				0850B4D12BF4BB7E00AA5077 /* DelayRunModuleImpl.swift */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
+		0850B4E12BF4CC4A00AA5077 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				0850B4E22BF4CC5700AA5077 /* DelayRunModule.swift */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
 		08AAEDA92BE889A70045074F /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				BD096DD22BEE5FEC00281624 /* CameraPreviewService */,
-				08AAEDBD2BE9C7470045074F /* AudioRecorderService */,
+				08AAEDBD2BE9C7470045074F /* AudioService */,
 				08AAEDAA2BE889B00045074F /* MotionService */,
 			);
 			path = Service;
@@ -209,12 +273,12 @@
 			path = Default;
 			sourceTree = "<group>";
 		};
-		08AAEDBD2BE9C7470045074F /* AudioRecorderService */ = {
+		08AAEDBD2BE9C7470045074F /* AudioService */ = {
 			isa = PBXGroup;
 			children = (
-				08AAEDBE2BE9C7630045074F /* AudioRecorderService.swift */,
+				0850B4D62BF4C77000AA5077 /* AudioService.swift */,
 			);
-			path = AudioRecorderService;
+			path = AudioService;
 			sourceTree = "<group>";
 		};
 		08AAEDC12BE9F2B90045074F /* Test */ = {
@@ -301,6 +365,8 @@
 		BD8D782E2BDF3D9400909914 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				0850B4D32BF4C72100AA5077 /* AudioService */,
+				0850B4D02BF4BB7200AA5077 /* Common */,
 				08AAEDAB2BE889C10045074F /* MotionService */,
 			);
 			path = Module;
@@ -461,9 +527,13 @@
 				08AAEDB22BE88C1A0045074F /* MotionServiceModuleProtocol.swift in Sources */,
 				BDC5BE822BECCEFC00017768 /* CameraTestVC.swift in Sources */,
 				BD8D78002BDF369F00909914 /* ViewController.swift in Sources */,
+				0850B4E32BF4CC5700AA5077 /* DelayRunModule.swift in Sources */,
 				BD8D77FC2BDF369F00909914 /* AppDelegate.swift in Sources */,
 				BD8D77FE2BDF369F00909914 /* SceneDelegate.swift in Sources */,
 				082D16962BE0AC2000200757 /* IntervalEnum.swift in Sources */,
+				0850B4D72BF4C77000AA5077 /* AudioService.swift in Sources */,
+				0850B4D22BF4BB7E00AA5077 /* DelayRunModuleImpl.swift in Sources */,
+				0850B4D92BF4C7F500AA5077 /* AudioPlayerModuleImpl.swift in Sources */,
 				08AD5A8E2BE0E6840009C873 /* ThreePointAxisProtocol.swift in Sources */,
 				082D168F2BE0AB9700200757 /* Observable.swift in Sources */,
 				08AAEDB92BE89AA00045074F /* DFDeviceMotionModule.swift in Sources */,
@@ -471,17 +541,19 @@
 				082D168A2BE0AB6E00200757 /* Acceleration.swift in Sources */,
 				08AAEDB52BE88F7B0045074F /* DFAccelermeterModule.swift in Sources */,
 				08AAEDC42BE9F2D30045074F /* AudioRecordTestVC.swift in Sources */,
+				0850B4DF2BF4CC2E00AA5077 /* AudioPlayerModule.swift in Sources */,
 				BD8D78002BDF369F00909914 /* ViewController.swift in Sources */,
+				0850B4D52BF4C75600AA5077 /* AudioRecorderModuleImpl.swift in Sources */,
 				BD096DD42BEE5FFF00281624 /* CameraPreviewService.swift in Sources */,
 				08AAEDA52BE3C4920045074F /* MyCMMotionManager.swift in Sources */,
 				BD8D77FC2BDF369F00909914 /* AppDelegate.swift in Sources */,
 				BDE65CFF2BF9DDDC00F5FAE8 /* VideoRecording.swift in Sources */,
 				0850B4CF2BF0FEFE00AA5077 /* CoreMotionTestVC.swift in Sources */,
-				08AAEDBF2BE9C7630045074F /* AudioRecorderService.swift in Sources */,
 				08AAEDB72BE89A0C0045074F /* DFGyroModule.swift in Sources */,
 				BD8D77FE2BDF369F00909914 /* SceneDelegate.swift in Sources */,
 				08AAEDBB2BE89B2C0045074F /* DFMotionService.swift in Sources */,
 				08AD5A832BE0B7AF0009C873 /* Magnetism.swift in Sources */,
+				0850B4DD2BF4CC2000AA5077 /* AudioRecorderModule.swift in Sources */,
 				082D168C2BE0AB7D00200757 /* Gyro.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
