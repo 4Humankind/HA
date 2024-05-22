@@ -9,16 +9,26 @@ import UIKit
 import AVFoundation
 import SnapKit
 
+// 현재 문제점
+// 1. CameraPreview 화면
+// 2. 뒤돌아가기 불가능
+// 3. 종속된 상황
+
 class CameraTestVC: UIViewController {
     private var cameraButton = UIButton()
     private var videoButton = UIButton()
-    private var cameraPreviewLayer: CameraPreview?
     private var isRecording: Bool = false
+    private var captureSession: AVCaptureSession!
+    private var backCamera: AVCaptureDevice!
+    private var frontCamera: AVCaptureDevice!
+    private var backInput: AVCaptureInput!
+    private var frontInput: AVCaptureInput!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         checkCameraPermission()
+        setupAndStartCaptureSession()
     }
     
     private func setupUI() {
@@ -52,66 +62,68 @@ class CameraTestVC: UIViewController {
     }
     
     private func checkCameraPermission() {
-        AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
-            guard granted else { return }
-            DispatchQueue.main.async {
-                self?.setupCameraPreview()
+        
+    }
+    
+    private func setupAndStartCaptureSession() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.captureSession = AVCaptureSession()
+            self.captureSession.beginConfiguration()
+            
+            if self.captureSession.canSetSessionPreset(.photo) {
+                self.captureSession.sessionPreset = .photo
             }
+            // enable higher color
+            self.captureSession.automaticallyConfiguresCaptureDeviceForWideColor = true
+            
+            self.setupInputs()
+            
+            self.captureSession.commitConfiguration()
+            // run on background thread since it blocks main
+            self.captureSession.startRunning()
         }
     }
     
-    private func setupCameraPreview() {
-        let preview = CameraPreview()
-        view.addSubview(preview)
-        preview.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).offset(50)
-            make.leading.trailing.equalTo(view)
-            make.height.equalTo(300)
+    private func setupInputs() {
+        if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) {
+            backCamera = device
+        } else {
+            fatalError("후면 카메라 생성을 실패했습니다.")
         }
-        self.cameraPreviewLayer = preview
+        
+        if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) {
+            frontCamera = device
+        } else {
+            fatalError("프런트 카메라 생성을 실패했습니다.")
+        }
+        
+        guard let back = try? AVCaptureDeviceInput(device: backCamera) else {
+            fatalError("후면 카메라가 없습니다.")
+        }
+        
+        backInput = back
+        if !captureSession.canAddInput(backInput) {
+            fatalError("데이터 전달을 할 수 없습니다.")
+        }
+        
+        guard let front = try? AVCaptureDeviceInput(device: frontCamera) else {
+            fatalError("후면 카메라로 데이터 입력을 실패했습니다.")
+        }
+        
+        frontInput = front
+        if !captureSession.canAddInput(frontInput) {
+            fatalError("데이터 전달이 안됩니다.")
+        }
+        
+        captureSession.addInput(backInput)
+        
     }
     
     @objc private func cameraButtonTapped() {
         print("Camera button tapped")
-        // previewLayer를 활용해서 화면 캡쳐 진행
-        cameraPreviewLayer?.capturePhoto(delegate: self)
     }
     
     @objc private func videoButtonTapped() {
         print("Video button tapped")
-        if isRecording {
-            isRecording = false
-            cameraPreviewLayer?.stopRecording()
-        } else {
-            isRecording = true
-            cameraPreviewLayer?.startRecording(delegate: self)
-        }
-    }
-}
-
-extension CameraTestVC: AVCapturePhotoCaptureDelegate {
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        guard let data = photo.fileDataRepresentation(), let image = UIImage(data: data) else {
-            print("Error processing photo")
-            return
-        }
-        
-        DispatchQueue.main.async {
-            self.cameraPreviewLayer?.stopRunning()
-            let imageView = UIImageView(image: image)
-            imageView.contentMode = .scaleAspectFill
-            imageView.frame = self.view.bounds
-            self.view.addSubview(imageView)
-        }
-    }
-}
-
-extension CameraTestVC: AVCaptureFileOutputRecordingDelegate {
-    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: (any Error)?) {
-        if let error = error {
-            print("Error recording video")
-        } else {
-            UISaveVideoAtPathToSavedPhotosAlbum(outputFileURL.path, nil, nil, nil)
-        }
     }
 }
