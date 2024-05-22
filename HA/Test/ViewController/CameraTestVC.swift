@@ -23,12 +23,16 @@ class CameraTestVC: UIViewController {
     private var frontCamera: AVCaptureDevice!
     private var backInput: AVCaptureInput!
     private var frontInput: AVCaptureInput!
+    private var videoOutput: AVCaptureVideoDataOutput!
+    private var previewLayer: AVCaptureVideoPreviewLayer!
+    private var takePicture: Bool = false
+    private let captureImageView = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        checkCameraPermission()
         setupAndStartCaptureSession()
+        setImageView()
     }
     
     private func setupUI() {
@@ -44,8 +48,8 @@ class CameraTestVC: UIViewController {
         view.addSubview(cameraButton)
         cameraButton.snp.makeConstraints { make in
             make.size.equalTo(100)
-            make.trailing.equalTo(view.snp.trailing).inset(50)
-            make.centerY.equalTo(view.snp.centerY)
+            make.bottom.equalTo(view.snp.bottom).offset(-50)
+            make.centerX.equalTo(view.snp.centerX).offset(-50)
         }
     }
     
@@ -56,13 +60,38 @@ class CameraTestVC: UIViewController {
         view.addSubview(videoButton)
         videoButton.snp.makeConstraints { make in
             make.size.equalTo(100)
-            make.leading.equalTo(view.snp.leading).inset(50)
-            make.centerY.equalTo(view.snp.centerY)
+            make.bottom.equalTo(view.snp.bottom).offset(-50)
+            make.centerX.equalTo(view.snp.centerX).offset(50)
         }
     }
     
-    private func checkCameraPermission() {
-        
+    private func setImageView() {
+        view.addSubview(captureImageView)
+        captureImageView.snp.makeConstraints { make in
+            make.size.equalTo(100)
+            make.bottom.equalTo(view.snp.bottom).inset(50)
+            make.trailing.equalTo(view.snp.trailing).inset(10)
+        }
+    }
+    
+    private func checkPermission() {
+        let cameraStatus =  AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+        switch cameraStatus {
+        case .authorized:
+            return
+        case .denied:
+            abort()
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: AVMediaType.video) { (authorized) in
+                if !authorized {
+                    abort()
+                }
+            }
+        case .restricted:
+            abort()
+        default:
+            fatalError()
+        }
     }
     
     private func setupAndStartCaptureSession() {
@@ -77,11 +106,36 @@ class CameraTestVC: UIViewController {
             self.captureSession.automaticallyConfiguresCaptureDeviceForWideColor = true
             
             self.setupInputs()
+            DispatchQueue.main.async {
+                self.setupPreviewLayer()
+            }
+            
+            self.setOutput()
             
             self.captureSession.commitConfiguration()
             // run on background thread since it blocks main
             self.captureSession.startRunning()
         }
+    }
+    
+    private func setOutput() {
+        videoOutput = AVCaptureVideoDataOutput()
+        let videoQueue = DispatchQueue(label: "videoQueue", qos: .userInteractive)
+        videoOutput.setSampleBufferDelegate(self, queue: videoQueue)
+        
+        if captureSession.canAddOutput(videoOutput) {
+            captureSession.addOutput(videoOutput)
+        } else {
+            fatalError("데이터를 내보낼 수 없었습니다.")
+        }
+        
+        videoOutput.connections.first?.videoOrientation = .portrait
+    }
+    
+    private func setupPreviewLayer() {
+        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        view.layer.addSublayer(previewLayer)
+        previewLayer.frame = self.view.layer.frame
     }
     
     private func setupInputs() {
@@ -116,14 +170,37 @@ class CameraTestVC: UIViewController {
         }
         
         captureSession.addInput(backInput)
-        
     }
     
+    // after camera button tapped - returned image portrait is flipped.
     @objc private func cameraButtonTapped() {
         print("Camera button tapped")
+        takePicture = true
     }
     
     @objc private func videoButtonTapped() {
         print("Video button tapped")
+    }
+}
+
+extension CameraTestVC: AVCaptureVideoDataOutputSampleBufferDelegate {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        if !takePicture {
+            return
+        }
+        
+        // get CVImageBuffer from sample Buffer
+        guard let cvBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+        
+        // get ciImage  from buffer and retrieve UIImage
+        let ciImage = CIImage(cvImageBuffer: cvBuffer)
+        let uiImage = UIImage(ciImage: ciImage)
+        
+        DispatchQueue.main.async {
+            self.captureImageView.image = uiImage
+            self.takePicture = false
+        }
     }
 }
