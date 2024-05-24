@@ -17,12 +17,26 @@ class PermissionModuleImpl: NSObject, PermissionModule {
     }
     
     func checkPermissions() {
-        checkCameraPermission()
-        checkMicrophonePermission()
-        checkLibraryPermission()
+        checkCameraPermission { granted in
+            if !granted {
+                print("카메라가 허용되지 않습니다.")
+            }
+        }
+        
+        checkMicrophonePermission { granted in
+            if !granted {
+                print("마이크가 허용되지 않습니다.")
+            }
+        }
+        
+        checkLibraryPermission { granted in
+            if !granted {
+                print("앨범 열람이 되지 않습니다.")
+            }
+        }
     }
     
-    func checkCameraPermission() {
+    func checkCameraPermission(completion: @escaping (Bool) -> Void) {
         let cameraStatus = AVCaptureDevice.authorizationStatus(for: .video)
         
         switch cameraStatus {
@@ -39,7 +53,7 @@ class PermissionModuleImpl: NSObject, PermissionModule {
         }
     }
     
-    func checkMicrophonePermission() {
+    func checkMicrophonePermission(completion: @escaping (Bool) -> Void) {
         let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
         
         switch micStatus {
@@ -56,7 +70,7 @@ class PermissionModuleImpl: NSObject, PermissionModule {
         }
     }
     
-    func checkLibraryPermission() {
+    func checkLibraryPermission(completion: @escaping (Bool) -> Void) {
         PHPhotoLibrary.requestAuthorization { status in
             switch status {
             case .authorized:

@@ -16,66 +16,14 @@ class CameraTestVC: UIViewController, AVCaptureFileOutputRecordingDelegate {
     private var videoOutput: AVCaptureMovieFileOutput!
     private var previewLayer: AVCaptureVideoPreviewLayer!
     private var videoButton = UIButton()
+    private var permissionModule: PermissionModuleImpl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        checkPermissions()
+        permissionModule = PermissionModuleImpl()
+        permissionModule.checkPermissions()
         setupCaptureSession()
         setupVideoButton()
-    }
-    
-    private func checkCameraPermission() {
-        let cameraStatus = AVCaptureDevice.authorizationStatus(for: .video)
-        
-        switch cameraStatus {
-        case .authorized:
-            break
-        case .notDetermined:
-            AVCaptureDevice.requestAccess(for: .video) { granted in
-                if !granted {
-                    print("카메라가 허용되지 않았습니다.")
-                }
-            }
-        default:
-            print("카메라 접근을 할 수 없습니다.")
-        }
-    }
-    
-    private func checkMicrophonePermission() {
-        let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
-        
-        switch micStatus {
-        case .authorized:
-            break
-        case .notDetermined:
-            AVCaptureDevice.requestAccess(for: .audio) { granted in
-                if !granted {
-                    print("마이크가 허용되지 않았습니다.")
-                }
-            }
-        default:
-            print("마이크 접근을 할 수 없습니다.")
-        }
-    }
-    
-    private func checkLibraryPermission() {
-        PHPhotoLibrary.requestAuthorization { status in
-            switch status {
-            case .authorized:
-                print("사진 접근이 가능합니다.")
-            case .denied, .limited, .notDetermined, .restricted:
-                print("사진 접근이 필요해요.")
-            default:
-                break
-            }
-        }
-    }
-    
-    private func checkPermissions() {
-        checkCameraPermission()
-        checkMicrophonePermission()
-        checkLibraryPermission()
     }
     
     private func setupCaptureSession() {
