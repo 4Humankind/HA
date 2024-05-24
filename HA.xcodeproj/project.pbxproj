@@ -29,7 +29,11 @@
 		08AD5A802BE0B68B0009C873 /* DeviceMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD5A7F2BE0B68B0009C873 /* DeviceMotion.swift */; };
 		08AD5A832BE0B7AF0009C873 /* Magnetism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD5A822BE0B7AF0009C873 /* Magnetism.swift */; };
 		08AD5A8E2BE0E6840009C873 /* ThreePointAxisProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD5A8D2BE0E6840009C873 /* ThreePointAxisProtocol.swift */; };
-		BD096DD42BEE5FFF00281624 /* CameraPreviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD096DD32BEE5FFF00281624 /* CameraPreviewService.swift */; };
+		BD096DD42BEE5FFF00281624 /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD096DD32BEE5FFF00281624 /* CameraService.swift */; };
+		BD34C9182BFF2351008613FA /* PermissionModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD34C9172BFF2351008613FA /* PermissionModule.swift */; };
+		BD34C91D2C00779A008613FA /* PermissionModuleImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD34C91C2C00779A008613FA /* PermissionModuleImpl.swift */; };
+		BD69F4682C008A4A00D302B5 /* CameraModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69F4672C008A4A00D302B5 /* CameraModule.swift */; };
+		BD69F46A2C008A5000D302B5 /* VideoModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69F4692C008A5000D302B5 /* VideoModule.swift */; };
 		BD8D77FC2BDF369F00909914 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D77FB2BDF369F00909914 /* AppDelegate.swift */; };
 		BD8D77FE2BDF369F00909914 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D77FD2BDF369F00909914 /* SceneDelegate.swift */; };
 		BD8D78002BDF369F00909914 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8D77FF2BDF369F00909914 /* ViewController.swift */; };
@@ -84,7 +88,11 @@
 		08AD5A7F2BE0B68B0009C873 /* DeviceMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMotion.swift; sourceTree = "<group>"; };
 		08AD5A822BE0B7AF0009C873 /* Magnetism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Magnetism.swift; sourceTree = "<group>"; };
 		08AD5A8D2BE0E6840009C873 /* ThreePointAxisProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreePointAxisProtocol.swift; sourceTree = "<group>"; };
-		BD096DD32BEE5FFF00281624 /* CameraPreviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewService.swift; sourceTree = "<group>"; };
+		BD096DD32BEE5FFF00281624 /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
+		BD34C9172BFF2351008613FA /* PermissionModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionModule.swift; sourceTree = "<group>"; };
+		BD34C91C2C00779A008613FA /* PermissionModuleImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionModuleImpl.swift; sourceTree = "<group>"; };
+		BD69F4672C008A4A00D302B5 /* CameraModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModule.swift; sourceTree = "<group>"; };
+		BD69F4692C008A5000D302B5 /* VideoModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModule.swift; sourceTree = "<group>"; };
 		BD8D77F82BDF369F00909914 /* HA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD8D77FB2BDF369F00909914 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD8D77FD2BDF369F00909914 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -192,7 +200,7 @@
 		08AAEDA92BE889A70045074F /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				BD096DD22BEE5FEC00281624 /* CameraPreviewService */,
+				BD096DD22BEE5FEC00281624 /* CameraService */,
 				08AAEDBD2BE9C7470045074F /* AudioService */,
 				08AAEDAA2BE889B00045074F /* MotionService */,
 			);
@@ -299,12 +307,47 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		BD096DD22BEE5FEC00281624 /* CameraPreviewService */ = {
+		BD096DD22BEE5FEC00281624 /* CameraService */ = {
 			isa = PBXGroup;
 			children = (
-				BD096DD32BEE5FFF00281624 /* CameraPreviewService.swift */,
+				BD096DD32BEE5FFF00281624 /* CameraService.swift */,
 			);
-			path = CameraPreviewService;
+			path = CameraService;
+			sourceTree = "<group>";
+		};
+		BD34C9162BFF2345008613FA /* CameraService */ = {
+			isa = PBXGroup;
+			children = (
+				BD34C9192BFF2490008613FA /* Modules */,
+			);
+			path = CameraService;
+			sourceTree = "<group>";
+		};
+		BD34C9192BFF2490008613FA /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				BD34C91B2C007760008613FA /* Impl */,
+				BD34C91A2C007758008613FA /* Interface */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		BD34C91A2C007758008613FA /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				BD34C9172BFF2351008613FA /* PermissionModule.swift */,
+				BD69F4672C008A4A00D302B5 /* CameraModule.swift */,
+				BD69F4692C008A5000D302B5 /* VideoModule.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		BD34C91B2C007760008613FA /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				BD34C91C2C00779A008613FA /* PermissionModuleImpl.swift */,
+			);
+			path = Impl;
 			sourceTree = "<group>";
 		};
 		BD8D77EF2BDF369F00909914 = {
@@ -331,15 +374,15 @@
 			isa = PBXGroup;
 			children = (
 				BD8D77FB2BDF369F00909914 /* AppDelegate.swift */,
-				BD8D77FD2BDF369F00909914 /* SceneDelegate.swift */,
-				BD8D77FF2BDF369F00909914 /* ViewController.swift */,
-				08AAEDC12BE9F2B90045074F /* Test */,
-				082D168D2BE0AB8E00200757 /* Common */,
-				08AAEDA92BE889A70045074F /* Service */,
-				BD8D782E2BDF3D9400909914 /* Module */,
 				BD8D78042BDF36A000909914 /* Assets.xcassets */,
-				BD8D78062BDF36A000909914 /* LaunchScreen.storyboard */,
+				082D168D2BE0AB8E00200757 /* Common */,
 				BD8D78092BDF36A000909914 /* Info.plist */,
+				BD8D78062BDF36A000909914 /* LaunchScreen.storyboard */,
+				BD8D782E2BDF3D9400909914 /* Module */,
+				BD8D77FD2BDF369F00909914 /* SceneDelegate.swift */,
+				08AAEDA92BE889A70045074F /* Service */,
+				08AAEDC12BE9F2B90045074F /* Test */,
+				BD8D77FF2BDF369F00909914 /* ViewController.swift */,
 			);
 			path = HA;
 			sourceTree = "<group>";
@@ -365,6 +408,7 @@
 		BD8D782E2BDF3D9400909914 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				BD34C9162BFF2345008613FA /* CameraService */,
 				0850B4D32BF4C72100AA5077 /* AudioService */,
 				0850B4D02BF4BB7200AA5077 /* Common */,
 				08AAEDAB2BE889C10045074F /* MotionService */,
@@ -524,7 +568,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD34C9182BFF2351008613FA /* PermissionModule.swift in Sources */,
 				08AAEDB22BE88C1A0045074F /* MotionServiceModuleProtocol.swift in Sources */,
+				BD34C91D2C00779A008613FA /* PermissionModuleImpl.swift in Sources */,
 				BDC5BE822BECCEFC00017768 /* CameraTestVC.swift in Sources */,
 				BD8D78002BDF369F00909914 /* ViewController.swift in Sources */,
 				0850B4E32BF4CC5700AA5077 /* DelayRunModule.swift in Sources */,
@@ -542,9 +588,11 @@
 				08AAEDB52BE88F7B0045074F /* DFAccelermeterModule.swift in Sources */,
 				08AAEDC42BE9F2D30045074F /* AudioRecordTestVC.swift in Sources */,
 				0850B4DF2BF4CC2E00AA5077 /* AudioPlayerModule.swift in Sources */,
+				BD69F4682C008A4A00D302B5 /* CameraModule.swift in Sources */,
 				BD8D78002BDF369F00909914 /* ViewController.swift in Sources */,
+				BD69F46A2C008A5000D302B5 /* VideoModule.swift in Sources */,
 				0850B4D52BF4C75600AA5077 /* AudioRecorderModuleImpl.swift in Sources */,
-				BD096DD42BEE5FFF00281624 /* CameraPreviewService.swift in Sources */,
+				BD096DD42BEE5FFF00281624 /* CameraService.swift in Sources */,
 				08AAEDA52BE3C4920045074F /* MyCMMotionManager.swift in Sources */,
 				BD8D77FC2BDF369F00909914 /* AppDelegate.swift in Sources */,
 				BDE65CFF2BF9DDDC00F5FAE8 /* VideoRecording.swift in Sources */,
@@ -732,6 +780,9 @@
 				DEVELOPMENT_TEAM = 2U86LHQK8Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HA/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "허용하면 카메라를 사용할 수 있어요.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "이 앱을 사용하기 위해서는 마이크 허용이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진 저장을 허용합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -764,6 +815,9 @@
 				DEVELOPMENT_TEAM = 2U86LHQK8Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HA/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "허용하면 카메라를 사용할 수 있어요.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "이 앱을 사용하기 위해서는 마이크 허용이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진 저장을 허용합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

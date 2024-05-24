@@ -7,250 +7,124 @@
 
 import UIKit
 import AVFoundation
+import Photos
 import SnapKit
 
-// 현재 문제점
-// 1. CameraPreview 화면
-// 2. 뒤돌아가기 불가능
-// 3. 종속된 상황
-
-class CameraTestVC: UIViewController {
-//    private var cameraButton = UIButton()
-    private var videoButton = UIButton()
-    private let captureImageView = UIImageView()
+class CameraTestVC: UIViewController, AVCaptureFileOutputRecordingDelegate {
     
     private var captureSession: AVCaptureSession!
-    
-    private var movieOutput: AVCaptureMovieFileOutput!
+    private var videoOutput: AVCaptureMovieFileOutput!
     private var previewLayer: AVCaptureVideoPreviewLayer!
-    private var activeInput: AVCaptureDeviceInput!
-        
+    private var videoButton = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if setupSession() {
-            setupUI()
-            setupPreviewLayer()
-            startSession()
-        }
-        
-    }
-    
-    private func setupSession() -> Bool {
-        captureSession?.sessionPreset = AVCaptureSession.Preset.high
-        
-        // setting up camera
-        let frontCamera = AVCaptureDevice.default(for: .video)!
-        
-        do {
-            let input = try AVCaptureDeviceInput(device: frontCamera)
-            
-            if captureSession.canAddInput(input) {
-                captureSession.addInput(input)
-                activeInput = input
-            }
-        } catch {
-            print("Error setting up video Session \(error.localizedDescription)")
-            return false
-        }
-        
-        let microphone = AVCaptureDevice.default(for: .audio)!
-        
-        do {
-            let mic = try AVCaptureDeviceInput(device: microphone)
-            
-            if captureSession.canAddInput(mic) {
-                captureSession.addInput(mic)
-            }
-        } catch {
-            print("Error setting up microphone Session \(error.localizedDescription)")
-            return false
-        }
-        
-        if captureSession.canAddOutput(movieOutput) {
-            captureSession.addOutput(movieOutput)
-        }
-        
-        return true
-    }
-    
-    private func startSession() {
-        if captureSession.isRunning {
-            DispatchQueue.main.async {
-                self.captureSession.startRunning()
-            }
-        }
-    }
-    
-    private func stopRunning() {
-        if captureSession.isRunning {
-            DispatchQueue.main.async {
-                self.captureSession.stopRunning()
-            }
-        }
-    }
-    
-    func tempURL() -> URL? {
-        let directory = NSTemporaryDirectory() as NSString
-        
-        if directory != "" {
-            let path = directory.appendingPathComponent(NSUUID().uuidString + ".mp4")
-            return URL(fileURLWithPath: path)
-        }
-        
-        return nil
-    }
-    
-    @objc private func videoButtonTapped() {
-        print("Video button tapped")
-        startVideoRecording()
-        
-        DispatchQueue.main.asyncAfter(deadline: (.now() + 60)) {
-            self.stopRecording()
-        }
-    }
-    
-    func currentVideoOrientation() -> AVCaptureVideoOrientation {
-        var orientation: AVCaptureVideoOrientation
-
-        switch UIDevice.current.orientation {
-        case .portrait:
-            orientation = AVCaptureVideoOrientation.portrait
-        case .landscapeRight:
-            orientation = AVCaptureVideoOrientation.landscapeLeft
-        case .portraitUpsideDown:
-            orientation = AVCaptureVideoOrientation.portraitUpsideDown
-        default:
-            orientation = AVCaptureVideoOrientation.landscapeRight
-        }
-
-        return orientation
-    }
-    
-    private func startVideoRecording() {
-        if !movieOutput.isRecording {
-            let connection = movieOutput.connection(with: AVMediaType.video)
-            
-            if (connection?.isVideoOrientationSupported)! {
-                connection?.videoOrientation = currentVideoOrientation()
-            }
-        } else {
-            stopRecording()
-        }
-    }
-    
-    private func stopRecording() {
-        if movieOutput.isRecording {
-            movieOutput.stopRecording()
-        }
-    }
-    
-    
-    
-//    private func setupAndStartCaptureSession() {
-//        DispatchQueue.global(qos: .userInitiated).async {
-//            self.captureSession = AVCaptureSession()
-//            self.captureSession.beginConfiguration()
-//            
-//            if self.captureSession.canSetSessionPreset(.photo) {
-//                self.captureSession.sessionPreset = .photo
-//            }
-//            // enable higher color
-//            self.captureSession.automaticallyConfiguresCaptureDeviceForWideColor = true
-//            
-//            self.setupInputs()
-//            
-//            self.setVideoOutput()
-//            
-//            self.captureSession.commitConfiguration()
-//            // run on background thread since it blocks main
-//            self.captureSession.startRunning()
-//        }
-//    }
-    
-//    private func setupInputs() {
-//        guard let backCamera = AVCaptureDevice.default(for: .video),
-//              let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera,
-//                                                        for: .video,
-//                                                        position: .front) else {
-//            print("카메라 설정이 완료되지 않았습니다.")
-//            return
-//        }
-//        
-//        do {
-//            let backInput = try AVCaptureDeviceInput(device: backCamera)
-//            let frontInput = try AVCaptureDeviceInput(device: frontCamera)
-//            
-//            if self.captureSession.canAddInput(backInput) {
-//                self.captureSession.addInput(backInput)
-//            }
-//            
-//            if self.captureSession.canAddInput(frontInput) {
-//                self.captureSession.addInput(frontInput)
-//            }
-//        } catch {
-//            fatalError("카메라에 세션을 더할 수 없었습니다.")
-//        }
-//    }
-    
-//    private func setCameraOutput() {
-//        photoOutput = AVCapturePhotoOutput()
-//        
-//        if captureSession.canAddOutput(photoOutput) {
-//            captureSession.addOutput(photoOutput)
-//        }
-//    }
-    
-    //MARK: - UI setup
-    
-    private func setupUI() {
-        view.backgroundColor = .white
-//        setupCameraButton()
+        checkPermissions()
+        setupCaptureSession()
         setupVideoButton()
-        setImageView()
     }
     
-//    private func checkPermission() {
-//        let cameraStatus =  AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
-//        switch cameraStatus {
-//        case .authorized:
-//            return
-//        case .denied:
-//            abort()
-//        case .notDetermined:
-//            AVCaptureDevice.requestAccess(for: AVMediaType.video) { (authorized) in
-//                if !authorized {
-//                    abort()
-//                }
-//            }
-//        case .restricted:
-//            abort()
-//        default:
-//            fatalError()
-//        }
-//    }
+    private func checkCameraPermission() {
+        let cameraStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        
+        switch cameraStatus {
+        case .authorized:
+            break
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { granted in
+                if !granted {
+                    print("카메라가 허용되지 않았습니다.")
+                }
+            }
+        default:
+            print("카메라 접근을 할 수 없습니다.")
+        }
+    }
+    
+    private func checkMicrophonePermission() {
+        let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
+        
+        switch micStatus {
+        case .authorized:
+            break
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .audio) { granted in
+                if !granted {
+                    print("마이크가 허용되지 않았습니다.")
+                }
+            }
+        default:
+            print("마이크 접근을 할 수 없습니다.")
+        }
+    }
+    
+    private func checkLibraryPermission() {
+        PHPhotoLibrary.requestAuthorization { status in
+            switch status {
+            case .authorized:
+                print("사진 접근이 가능합니다.")
+            case .denied, .limited, .notDetermined, .restricted:
+                print("사진 접근이 필요해요.")
+            default:
+                break
+            }
+        }
+    }
+    
+    private func checkPermissions() {
+        checkCameraPermission()
+        checkMicrophonePermission()
+        checkLibraryPermission()
+    }
+    
+    private func setupCaptureSession() {
+        captureSession = AVCaptureSession()
+        captureSession.sessionPreset = .photo
+        
+        guard let camera = AVCaptureDevice.default(for: .video) else {
+            print("Unable to access the camera.")
+            return
+        }
+        
+        do {
+            let cameraInput = try AVCaptureDeviceInput(device: camera)
+            if captureSession.canAddInput(cameraInput) {
+                captureSession.addInput(cameraInput)
+            } else {
+                print("Unable to add camera input to the session.")
+                return
+            }
+            
+            videoOutput = AVCaptureMovieFileOutput()
+            if captureSession.canAddOutput(videoOutput) {
+                captureSession.addOutput(videoOutput)
+            } else {
+                print("Unable to add movie file output to the session.")
+                return
+            }
+            
+        } catch {
+            print("Error setting up camera input: \(error)")
+            return
+        }
+        
+        setupPreviewLayer()
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.captureSession.startRunning()
+        }
+    }
     
     private func setupPreviewLayer() {
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         view.layer.addSublayer(previewLayer)
         previewLayer.frame = self.view.layer.frame
+        previewLayer.connection?.videoOrientation = .portrait
     }
-    
-//    private func setupCameraButton() {
-//        cameraButton.setImage(UIImage(systemName: "camera"), for: .normal)
-//        cameraButton.addTarget(self, action: #selector(cameraButtonTapped), for: .touchUpInside)
-//        
-//        view.addSubview(cameraButton)
-//        cameraButton.snp.makeConstraints { make in
-//            make.size.equalTo(100)
-//            make.bottom.equalTo(view.snp.bottom).offset(-50)
-//            make.centerX.equalTo(view.snp.centerX).offset(-50)
-//        }
-//    }
     
     private func setupVideoButton() {
         videoButton.setImage(UIImage(systemName: "video"), for: .normal)
-        videoButton.addTarget(self, action: #selector(videoButtonTapped), for: .touchUpInside)
+        videoButton.addTarget(self, action: #selector(toggleRecording), for: .touchUpInside)
         
         view.addSubview(videoButton)
         videoButton.snp.makeConstraints { make in
@@ -260,49 +134,61 @@ class CameraTestVC: UIViewController {
         }
     }
     
-    private func setImageView() {
-        view.addSubview(captureImageView)
-        captureImageView.snp.makeConstraints { make in
-            make.size.equalTo(100)
-            make.bottom.equalTo(view.snp.bottom).inset(50)
-            make.trailing.equalTo(view.snp.trailing).inset(10)
+    // 영상이 저장되지 않는 이유는 document directory가 어플을 실행할 때마다 변경하고 있어서.
+    // URL을 완전히 저장하기보다 특정 영역만 저장하면 된다 >
+    @objc func toggleRecording() {
+        if videoOutput.isRecording {
+            videoOutput.stopRecording()
+            videoButton.setTitle("Start Recording", for: .normal)
+        } else {
+            let outputFilePath = NSTemporaryDirectory().appending("output.mov")
+            let outputURL = URL(fileURLWithPath: outputFilePath)
+            videoOutput.startRecording(to: outputURL, recordingDelegate: self)
+            videoButton.setTitle("Stop Recording", for: .normal)
         }
     }
     
-}
-
-//extension CameraTestVC: AVCaptureVideoDataOutputSampleBufferDelegate {
-//    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-//        if !takePicture {
-//            return
-//        }
-//        
-//        // get CVImageBuffer from sample Buffer
-//        guard let cvBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-//            return
-//        }
-//        
-//        // get ciImage  from buffer and retrieve UIImage
-//        let ciImage = CIImage(cvImageBuffer: cvBuffer)
-//        let uiImage = UIImage(ciImage: ciImage)
-//        
-//        DispatchQueue.main.async {
-//            self.captureImageView.image = uiImage
-//            self.takePicture = false
-//        }
-//    }
-//}
-
-extension CameraTestVC: AVCaptureFileOutputRecordingDelegate {
-    func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection]) {
-        print("영상 촬영이 시작됩니다.")
+    func urlForVideo(nameWithExtension urlPath: String) -> URL? {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(urlPath)
     }
     
-    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: (any Error)?) {
+    // MARK: - AVCaptureFileOutputRecordingDelegate
+    
+    func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection]) {
+        print("Started recording to: \(fileURL)")
+    }
+    
+    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         if let error = error {
-            print("영상 촬영 하는데 오류가 있었습니다.")
+            print("Error recording movie: \(error.localizedDescription)")
         } else {
-            print("영상 촬영이 끝났습니다.")
+            print("Finished recording to: \(outputFileURL)")
+            saveVideoToPhotoLibrary(outputFileURL)
+        }
+    }
+    
+    func saveVideoToPhotoLibrary(_ fileURL: URL) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: fileURL)
+        }) { saved, error in
+            if let error = error {
+                print("Error saving video to photo library: \(error.localizedDescription)")
+            } else if saved {
+                print("Video saved to photo library.")
+                self.fetchLatestVideoAsset()
+            }
+        }
+    }
+    
+    func fetchLatestVideoAsset() {
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        
+        let fetchResult = PHAsset.fetchAssets(with: .video, options: fetchOptions).firstObject
+        if let latestVideo = fetchResult {
+            print("Fetched latest video asset: \(latestVideo)")
+        } else {
+            print("No video asset found.")
         }
     }
 }
