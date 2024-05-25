@@ -7,12 +7,3 @@
 
 import UIKit
 import AVFoundation
-
-//class CameraService {
-//    var permissionModule: PermissionModuleImpl
-//    
-//    init() {
-//        
-//    }
-//    
-//}
