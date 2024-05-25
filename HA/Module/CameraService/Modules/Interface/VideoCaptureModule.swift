@@ -1,20 +1,31 @@
 //
-//  CaptureSessionModule.swift
+//  VideoCaptureModule.swift
 //  HA
 //
 //  Created by Porori on 5/25/24.
 //
 
 import AVFoundation
+import UIKit
 
-protocol CaptureSessionInterface: AnyObject {
+protocol VideoCaptureModuleInterface: AnyObject {
     var captureSession: AVCaptureSession! { get }
+    func setupCaptureSession()
+    func setupPreviewLayer(to parentView: UIView)
 }
 
-class CaptureSessionModule: CaptureSessionInterface {
+class VideoCaptureModule: VideoCaptureModuleInterface {
     var captureSession: AVCaptureSession!
+    private var previewLayer: AVCaptureVideoPreviewLayer!
     
     init() {}
+    
+    func setupPreviewLayer(to parentView: UIView) {
+        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        parentView.layer.addSublayer(previewLayer)
+        previewLayer.frame = parentView.layer.frame
+        previewLayer.connection?.videoOrientation = .portrait
+    }
     
     func setupCaptureSession() {
         captureSession = AVCaptureSession()
