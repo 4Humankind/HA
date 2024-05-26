@@ -10,7 +10,7 @@ import AVFoundation
 import SnapKit
 
 class CameraTestVC: UIViewController {    
-    private var permissionModule: RequestPermissionModule!
+    private var permissionModule: PermissionModule!
     private var recordVideoModule: RecordVideoModule!
     private var captureModule: VideoCaptureModule!
     private var videoButton = UIButton()
@@ -18,7 +18,7 @@ class CameraTestVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        permissionModule = RequestPermissionModule()
+        permissionModule = PermissionModule()
         permissionModule.checkPermissions()
         
         captureModule = VideoCaptureModule()

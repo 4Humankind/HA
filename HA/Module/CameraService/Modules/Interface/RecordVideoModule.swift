@@ -30,7 +30,7 @@ class RecordVideoModule: NSObject, RecordVideoInterface {
         }
         
         print("녹화를 시작합니다.")
-        let fileName = "\(UUID().uuidString).mp4"
+        let fileName = "\(UUID().uuidString).mov"
         let outputFilePath = NSTemporaryDirectory().appending(fileName)
         let outputURL = URL(fileURLWithPath: outputFilePath)
         
@@ -60,15 +60,15 @@ class RecordVideoModule: NSObject, RecordVideoInterface {
         return userVideoURL
     }
     
-    func saveData(_ data: Data, toFileNamed fileName: String, inDirectory directoryName: String) {
-        guard let directoryUrl = createDirectory(named: directoryName) else {
-            print("\(directoryName)가 아직 없습니다.")
+    func saveData(_ data: Data, toFileNamed fileName: String, inDirectory folderName: String) {
+        guard let directoryUrl = createDirectory(named: folderName) else {
+            print("\(folderName)가 아직 없습니다.")
             return
         }
         
         let fileUrl = directoryUrl.appendingPathComponent(fileName)
         do {
-            try data.write(to: fileUrl)
+            try data.write(to: fileUrl, options: .atomic)
             print("데이터가 \(fileUrl) 위치에 저장되었습니다.")
         } catch {
             print("데이터가 저장되지 않았습니다. \(error.localizedDescription)")
@@ -78,30 +78,34 @@ class RecordVideoModule: NSObject, RecordVideoInterface {
 
 extension RecordVideoModule: AVCaptureFileOutputRecordingDelegate {
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: (any Error)?) {
-        
         if let error = error {
-            // 데이터가 중복 폴더가 존재한다는 점 디버깅
-            print("녹화 오류 상세 설명: \(error)")
+            print("녹화 저장에 문제가 생겼습니다: \(error.localizedDescription)")
+            print("Error details: \(error)") // 데이터가 중복 폴더가 존재한다는 점 디버깅
         } else {
-            guard let directoryUrl = createDirectory(named: "UserVideos") else {
-                print("경로 생성에 문제가 생겼습니다.")
+            
+            // 중복 파일 존재하는지 확인
+            if !FileManager.default.fileExists(atPath: outputFileURL.path) {
+                print("Source file does not exist: \(outputFileURL.path)")
                 return
             }
             
-            let fileName = outputFileURL.lastPathComponent
-            let destinationUrl = directoryUrl.appendingPathComponent(fileName)
-            
+            // ouput 값을 파일로 변경
             do {
-                if FileManager.default.fileExists(atPath: destinationUrl.path) {
-                    try FileManager.default.removeItem(at: destinationUrl)
-                }
+                let fileData = try Data(contentsOf: outputFileURL)
+                let fileName = outputFileURL.lastPathComponent
+                // fileData - 데이터 용량
+                print("데이터 명칭:", fileData)
+                print("파일 명칭:", fileName)
+                print("어떤 데이터?", outputFileURL)
                 
-                try FileManager.default.moveItem(at: outputFileURL, to: destinationUrl)
-                print("비디오가 \(destinationUrl.path)에 저장되었습니다.")
+                // 영상 파일을 저장
+                saveData(fileData, toFileNamed: fileName, inDirectory: "UserVideos")
+                
+                // Optionally, delete the temporary file after saving
+                try FileManager.default.removeItem(at: outputFileURL)
+                
             } catch {
-                print("저장된 데이터를 이동하는데 문제가 발생했습니다: \(error.localizedDescription)")
-                print("Source URL: \(outputFileURL)")
-                print("Destination URL: \(destinationUrl)")
+                print("Error reading file data or saving it: \(error.localizedDescription)")
             }
         }
     }

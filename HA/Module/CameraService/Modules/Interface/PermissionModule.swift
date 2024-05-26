@@ -1,5 +1,5 @@
 //
-//  RequestPermissionModule.swift
+//  PermissionModule.swift
 //  HA
 //
 //  Created by Porori on 5/24/24.
@@ -9,14 +9,14 @@ import Foundation
 import AVFoundation
 import Photos
 
-protocol RequestPermissionInterface: AnyObject {
+protocol PermissionModuleInterface: AnyObject {
     func checkPermissions()
     func checkCameraPermission(completion: @escaping (Bool) -> Void)
     func checkMicrophonePermission(completion: @escaping (Bool) -> Void)
     func checkLibraryPermission(completion: @escaping (Bool) -> Void)
 }
 
-class RequestPermissionModule: NSObject, RequestPermissionInterface {
+class PermissionModule: NSObject, PermissionModuleInterface {
     
     // in order to create module, NSObject needed
     override init() {
