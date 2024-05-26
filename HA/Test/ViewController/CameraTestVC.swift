@@ -7,7 +7,6 @@
 
 import UIKit
 import AVFoundation
-import Photos
 import SnapKit
 
 class CameraTestVC: UIViewController {    
@@ -15,6 +14,7 @@ class CameraTestVC: UIViewController {
     private var recordVideoModule: RecordVideoModule!
     private var captureModule: VideoCaptureModule!
     private var videoButton = UIButton()
+    private var isRecording: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,10 @@ class CameraTestVC: UIViewController {
         permissionModule.checkPermissions()
         
         captureModule = VideoCaptureModule()
-        recordVideoModule = RecordVideoModule()
+        captureModule.setupCaptureSession()
+        captureModule.setupPreviewLayer(to: view)
+        
+        recordVideoModule = RecordVideoModule(session: captureModule.captureSession)
         
         setupVideoButton()
     }
@@ -42,6 +45,11 @@ class CameraTestVC: UIViewController {
     // 영상이 저장되지 않는 이유는 document directory가 어플을 실행할 때마다 변경하고 있어서.
     // URL을 완전히 저장하기보다 특정 영역만 저장하면 된다 >
     @objc func toggleRecording(sender: UIButton) {
-        recordVideoModule.startRecording(whenTapped: sender)
+        if isRecording {
+            recordVideoModule.stopRecording()
+        } else {
+            recordVideoModule.startRecording()
+        }
+        isRecording.toggle()
     }
 }

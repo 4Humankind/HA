@@ -14,11 +14,13 @@ protocol VideoCaptureModuleInterface: AnyObject {
     func setupPreviewLayer(to parentView: UIView)
 }
 
-class VideoCaptureModule: VideoCaptureModuleInterface {
+class VideoCaptureModule: NSObject, VideoCaptureModuleInterface {
     var captureSession: AVCaptureSession!
     private var previewLayer: AVCaptureVideoPreviewLayer!
     
-    init() {}
+    override init() {
+        super.init()
+    }
     
     func setupPreviewLayer(to parentView: UIView) {
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
