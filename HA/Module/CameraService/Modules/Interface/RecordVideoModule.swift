@@ -7,54 +7,57 @@
 
 import UIKit
 import AVFoundation
-import Photos
 
 protocol RecordVideoInterface: AnyObject {
-    func startRecording(whenTapped button: UIButton)
+    func startRecording()
     func stopRecording()
 }
 
 class RecordVideoModule: NSObject, RecordVideoInterface {
-
     private var videoOutput: AVCaptureMovieFileOutput!
-    private var previewLayer: AVCaptureVideoPreviewLayer!
+    private var captureSession: AVCaptureSession!
     
-    override init() {
+    init(session: AVCaptureSession) {
         super.init()
-        
+        self.captureSession = session
+        self.videoOutput = session.outputs.compactMap { $0 as? AVCaptureMovieFileOutput }.first
     }
     
-    func startRecording(whenTapped button: UIButton) {
-        if videoOutput.isRecording {
-            videoOutput.stopRecording()
-            button.setTitle("Start Recording", for: .normal)
-        } else {
-            let outputFilePath = NSTemporaryDirectory().appending("output.mov")
-            let outputURL = URL(fileURLWithPath: outputFilePath)
-            videoOutput.startRecording(to: outputURL, recordingDelegate: self)
-            button.setTitle("Stop Recording", for: .normal)
+    func startRecording() {
+        guard let videoOutput = videoOutput else {
+            print("비디오 아웃풋이 생성되지 않았습니다.")
+            return
         }
+        
+        print("녹화를 시작합니다.")
+        let fileName = "\(UUID().uuidString).mp4"
+        let outputFilePath = NSTemporaryDirectory().appending(fileName)
+        let outputURL = URL(fileURLWithPath: outputFilePath)
+        
+        videoOutput.startRecording(to: outputURL, recordingDelegate: self)
     }
     
     func stopRecording() {
         print("녹화를 중지합니다")
+        videoOutput.stopRecording()
     }
     
     private func createDirectory(named directory: String) -> URL? {
         let fileManager = FileManager.default
-        if let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let filePath = documentDirectory.appendingPathComponent(directory)
-            if !fileManager.fileExists(atPath: filePath.path) {
-                do {
-                    try fileManager.createDirectory(at: filePath, withIntermediateDirectories: true)
-                } catch {
-                    print("파일 매니저에 저장하지 못했습니다.")
-                }
+        // create and store within 'sandboxed' file system
+        // they are unreachable from different apps
+        let document = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let userVideoURL = document.appendingPathComponent(directory)
+        
+        if !fileManager.fileExists(atPath: document.path) {
+            do {
+                try fileManager.createDirectory(at: userVideoURL, withIntermediateDirectories: true)
+            } catch {
+                print("파일 매니저에 저장하지 못했습니다.")
+                return nil
             }
-            print("Document 다이렉토리는 \(filePath)입니다.")
-            return filePath
         }
-        return nil
+        return userVideoURL
     }
     
     func saveData(_ data: Data, toFileNamed fileName: String, inDirectory directoryName: String) {
@@ -71,43 +74,35 @@ class RecordVideoModule: NSObject, RecordVideoInterface {
             print("데이터가 저장되지 않았습니다. \(error.localizedDescription)")
         }
     }
-    
-//    func saveVideoToPhotoLibrary(_ fileURL: URL) {
-//        PHPhotoLibrary.shared().performChanges({
-//            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: fileURL)
-//        }) { saved, error in
-//            if let error = error {
-//                print("Error saving video to photo library: \(error.localizedDescription)")
-//            } else if saved {
-//                print("Video saved to photo library.")
-//                self.fetchLatestVideoAsset()
-//            }
-//        }
-//    }
-//    
-//    func fetchLatestVideoAsset() {
-//        let fetchOptions = PHFetchOptions()
-//        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-//        
-//        let fetchResult = PHAsset.fetchAssets(with: .video, options: fetchOptions).firstObject
-//        if let latestVideo = fetchResult {
-//            print("Fetched latest video asset: \(latestVideo)")
-//        } else {
-//            print("No video asset found.")
-//        }
-//    }
 }
 
 extension RecordVideoModule: AVCaptureFileOutputRecordingDelegate {
-    
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: (any Error)?) {
+        
         if let error = error {
-            print("Error recording movie: \(error.localizedDescription)")
+            // 데이터가 중복 폴더가 존재한다는 점 디버깅
+            print("녹화 오류 상세 설명: \(error)")
         } else {
-            print("Finished recording to: \(outputFileURL)")
-            // saveVideoToPhotoLibrary(outputFileURL)
-            // self.saveData(<#T##data: Data##Data#>, toFileNamed: outputFileURL, inDirectory: "like so?")
+            guard let directoryUrl = createDirectory(named: "UserVideos") else {
+                print("경로 생성에 문제가 생겼습니다.")
+                return
+            }
             
+            let fileName = outputFileURL.lastPathComponent
+            let destinationUrl = directoryUrl.appendingPathComponent(fileName)
+            
+            do {
+                if FileManager.default.fileExists(atPath: destinationUrl.path) {
+                    try FileManager.default.removeItem(at: destinationUrl)
+                }
+                
+                try FileManager.default.moveItem(at: outputFileURL, to: destinationUrl)
+                print("비디오가 \(destinationUrl.path)에 저장되었습니다.")
+            } catch {
+                print("저장된 데이터를 이동하는데 문제가 발생했습니다: \(error.localizedDescription)")
+                print("Source URL: \(outputFileURL)")
+                print("Destination URL: \(destinationUrl)")
+            }
         }
     }
 }
