@@ -55,6 +55,4 @@ class AudioRecordTestVC: UIViewController, AVAudioRecorderDelegate, AVAudioPlaye
         guard let audio = audios.last else { return }
         audioService.playAudio(from: audio)
     }
-
 }
-

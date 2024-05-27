@@ -9,118 +9,47 @@ import UIKit
 import AVFoundation
 import SnapKit
 
-class CameraTestVC: UIViewController {
-    private var cameraButton = UIButton()
+class CameraTestVC: UIViewController {    
+    private var permissionModule: PermissionModule!
+    private var recordVideoModule: RecordVideoModule!
+    private var captureModule: VideoCaptureModule!
     private var videoButton = UIButton()
-    private var imageOutput = AVCapturePhotoOutput()
-    private var captureSession: AVCaptureSession?
-    private var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
+    private var isRecording: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        checkCameraPermission()
-    }
-    
-    private func setupUI() {
-        view.backgroundColor = .white
-        setupCameraButton()
-        setupVideoButton()
-    }
-    
-    private func setupCameraButton() {
-        cameraButton.setImage(UIImage(systemName: "camera"), for: .normal)
-        cameraButton.addTarget(self, action: #selector(cameraButtonTapped), for: .touchUpInside)
+        permissionModule = PermissionModule()
+        permissionModule.checkPermissions()
         
-        view.addSubview(cameraButton)
-        cameraButton.snp.makeConstraints { make in
-            make.size.equalTo(100)
-            make.trailing.equalTo(view.snp.trailing).inset(50)
-            make.centerY.equalTo(view.snp.centerY)
-        }
+        captureModule = VideoCaptureModule()
+        captureModule.setupCaptureSession()
+        captureModule.setupPreviewLayer(to: view)
+        
+        recordVideoModule = RecordVideoModule(session: captureModule.captureSession)
+        
+        setupVideoButton()
     }
     
     private func setupVideoButton() {
         videoButton.setImage(UIImage(systemName: "video"), for: .normal)
-        videoButton.addTarget(self, action: #selector(videoButtonTapped), for: .touchUpInside)
+        videoButton.addTarget(self, action: #selector(toggleRecording), for: .touchUpInside)
         
         view.addSubview(videoButton)
         videoButton.snp.makeConstraints { make in
             make.size.equalTo(100)
-            make.leading.equalTo(view.snp.leading).inset(50)
-            make.centerY.equalTo(view.snp.centerY)
+            make.bottom.equalTo(view.snp.bottom).offset(-50)
+            make.centerX.equalTo(view.snp.centerX).offset(50)
         }
     }
     
-    private func checkCameraPermission() {
-        AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
-            guard granted else { return }
-            DispatchQueue.main.async {
-                self?.configureCamera()
-            }
+    // 영상이 저장되지 않는 이유는 document directory가 어플을 실행할 때마다 변경하고 있어서.
+    // URL을 완전히 저장하기보다 특정 영역만 저장하면 된다 >
+    @objc func toggleRecording(sender: UIButton) {
+        if isRecording {
+            recordVideoModule.stopRecording()
+        } else {
+            recordVideoModule.startRecording()
         }
-    }
-    
-    private func configureCamera() {
-        let session = AVCaptureSession()
-        guard let device = AVCaptureDevice.default(for: .video) else { return }
-        
-        do {
-            let input = try AVCaptureDeviceInput(device: device)
-            if session.canAddInput(input) {
-                session.addInput(input)
-            }
-            
-            if session.canAddOutput(imageOutput) {
-                session.addOutput(imageOutput)
-            }
-            
-            let previewLayer = AVCaptureVideoPreviewLayer(session: session)
-            previewLayer.videoGravity = .resizeAspectFill
-            
-            view.layer.addSublayer(previewLayer)
-            previewLayer.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
-            
-            session.startRunning()
-            self.captureSession = session
-            self.cameraPreviewLayer = previewLayer
-        } catch {
-            print("Error configuring camera:", error.localizedDescription)
-        }
-    }
-    
-    @objc private func cameraButtonTapped() {
-        print("Camera button tapped")
-        capturePhoto()
-    }
-    
-    @objc private func videoButtonTapped() {
-        print("Video button tapped")
-    }
-    
-    private func capturePhoto() {
-        guard let captureSession = captureSession else {
-            print("Capture session is not configured")
-            return
-        }
-        
-        imageOutput.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
-    }
-}
-
-extension CameraTestVC: AVCapturePhotoCaptureDelegate {
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        guard let data = photo.fileDataRepresentation(), let image = UIImage(data: data) else {
-            print("Error processing photo")
-            return
-        }
-        
-        DispatchQueue.main.async {
-            self.captureSession?.stopRunning()
-            let imageView = UIImageView(image: image)
-            imageView.contentMode = .scaleAspectFill
-            imageView.frame = self.view.bounds
-            self.view.addSubview(imageView)
-        }
+        isRecording.toggle()
     }
 }
